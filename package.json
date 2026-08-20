@@ -1,0 +1,20 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "Travafa content automation - Veo/Gemini test scripts",
+  "main": "test-veo.js",
+  "scripts": {
+    "test-veo": "node test-veo.js",
+    "upload": "node upload-to-gcs.js",
+    "publish-video": "node publish-instagram-video.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@google-cloud/storage": "^8.0.1",
+    "@google/genai": "^2.18.0",
+    "dotenv": "^17.4.2"
+  }
+}

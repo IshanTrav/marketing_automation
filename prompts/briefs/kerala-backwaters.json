@@ -1,0 +1,32 @@
+{
+  "OBJECTIVE": "consideration",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Kerala backwaters honeymoon trip",
+  "TARGET_AUDIENCE": "Urban Indian adults (24-32) coordinating a special Kerala backwaters holiday with family members, who have saved dozens of houseboat reels but are stuck in group chats trying to reconcile conflicting preferences on boat types, dates, and routes.",
+  "PAIN_POINT": "Planning an Alleppey backwaters trip with multiple family stakeholders leads to endless debate over whether to book an overnight Vembanad luxury houseboat or stay in a quiet Kumarakom resort with day shikhara rides, leaving dates open and bookings stalled as peak season availability disappears.",
+  "PRODUCT_FOCUS": "Group trip planning",
+  "DESTINATION": "Alleppey (Alappuzha) & Kumarakom Backwaters, Kerala, India",
+  "CREATIVE_ANGLE": "They know they want the tranquil backwaters, but nobody agrees on the pace—one wants the full day-night private houseboat circuit while another wants village canoe trails and Ayurvedic wellness sessions. Travafa's Group Trip Planning lets them propose specific dates, add competing houseboat and activity options to a shared board, and vote directly so the entire group settles the itinerary collaboratively without endless messaging.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 19,
+  "FINAL_PART_SECONDS": 3,
+  "LOOK_CONSTRAINTS": "time_of_day: night, lit by artificial and practical lights; weather: flat overcast cloud cover; palette: desaturated documentary colour grade; film_look: handheld documentary feel, minor natural shake; human_presence: one parent and one child, two people only",
+  "CharacterStyle": "An Indian mother in a muted maroon cotton kurti with thin silver bangles, sitting beside her adult daughter dressed in a slate-grey oversized crewneck sweater with her hair gathered in a tortoiseshell claw clip.",
+  "Setting": "A quiet dining nook at night, illuminated by a warm low-hanging tungsten pendant lamp and a soft kitchen counter light, with a dark wooden tabletop holding two ceramic chai mugs and a paper notebook.",
+  "ReferenceTone": "Desaturated documentary realism with soft practical lighting, quiet natural intimacy, and subtle handheld camera movement.",
+  "PhoneShotAction": "The daughter rests the phone on the wooden table showing the Travafa group voting card for Alleppey houseboat options, while the mother leans in and taps her vote directly on the screen beside her daughter.",
+  "$dials": {
+    "time_of_day": "night_artificial",
+    "weather": "overcast",
+    "palette": "desaturated_doc",
+    "film_look": "handheld_doc",
+    "subject_focus": "planning_led",
+    "human_presence": "family_pair",
+    "caption_structure": "short_story",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "budget_deal_heavy",
+    "product_focus": "group_trip_planning",
+    "product_presence": "feature_enacted",
+    "payoff_scene": "window_seat"
+  }
+}

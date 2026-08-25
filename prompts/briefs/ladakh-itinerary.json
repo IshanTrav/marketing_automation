@@ -1,0 +1,43 @@
+{
+  "TOPIC": "Plan an itinerary to Ladakh",
+  "TARGET_AUDIENCE": "Indian travellers aged 22-32, app-first, planning their first big Ladakh trip, usually going with two or three friends rather than alone",
+  "PRODUCT_FOCUS": "Trip and itinerary planning",
+  "KNOWN_PRODUCT_CAPABILITIES": [
+    "Explore destinations by city",
+    "Browse curated places based on stated preferences",
+    "Search and book flights: one-way or round-trip, with from, to, depart date, travellers and cabin",
+    "Search hotels",
+    "Browse and add activities",
+    "Arrange transfers",
+    "Create a trip that holds multiple destinations and a count of activities",
+    "Plan a trip together with other travellers on one shared trip",
+    "Chats attached to a trip",
+    "Create Memories from photos already on the phone (app only)"
+  ],
+  "DESTINATION": "Ladakh (Leh)",
+  "CREATIVE_ANGLE": "An itinerary is not one decision, it is thirty small ones. Right now those thirty decisions live in a group chat, six blogs, a notes app and someone's screenshots, and nobody can see the whole plan at once.",
+  "CTA": "Comment TRAVAFA",
+  "REFERENCE_ASSETS": {
+    "REFERENCE_1_TRAVELER": "assets/ref/traveller.png - South Indian woman, late twenties, wheatish complexion, dark wavy hair tied back, small gold studs, cream linen shirt",
+    "REFERENCE_2_PHONE": "assets/ref/phone-bare.png - iPhone, blank screen, neutral grey background",
+    "REFERENCE_3_TRAVAFA_UI": "assets/app/flight-search.png - the real Travafa flight search screen"
+  },
+  "TOTAL_DURATION_SECONDS": 16,
+  "LOOK_CONSTRAINTS": "time_of_day: night, lit by artificial and practical lights; weather: clear sky, dry conditions; palette: warm earth tones, ochre and terracotta; film_look: hyperlapse, accelerated motion; human_presence: one parent and one child, two people only",
+  "$dials": {
+    "time_of_day": "night_artificial",
+    "weather": "clear_sky",
+    "palette": "warm_earth",
+    "film_look": "hyperlapse",
+    "subject_focus": "interaction_led",
+    "human_presence": "family_pair",
+    "caption_structure": "question_answer",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "balanced",
+    "product_presence": "feature_enacted",
+    "payoff_scene": "packing_out"
+  },
+  "CREATIVE_ANGLE_DIALS": "subject_focus: an interaction with a local, vendor or guide is the subject; payoff_scene: leaving home with a packed bag, the trip beginning",
+  "PRODUCT_FOCUS_DIALS": "product_presence: a Travafa behaviour happens physically: a group deciding together, or a past trip being revisited through photos",
+  "CAPTION_DIALS": "caption_structure: pose a question, answer it, then CTA; copy_tone: aspirational, evocative; hashtag_mix: balanced mix of broad-reach and niche tags"
+}

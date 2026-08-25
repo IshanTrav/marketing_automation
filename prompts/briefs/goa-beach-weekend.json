@@ -1,0 +1,32 @@
+{
+  "OBJECTIVE": "consideration",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Goa beach weekend with college friends",
+  "TARGET_AUDIENCE": "Indian college friends and young professionals aged 21-27 who have an active group chat discussing a quick Goa getaway, previously burned by awkward post-trip bill splitting and messy UPI payment tracking.",
+  "PAIN_POINT": "Scooter rental deposits, beach shack seafood platters, club cover charges, and shared villa bills get paid across four different UPI accounts and random cash notes, resulting in endless 'who paid for what' arguments and awkward post-trip balance chasing.",
+  "PRODUCT_FOCUS": "Shared coordination",
+  "DESTINATION": "North Goa, Vagator and Anjuna coastal cliffside",
+  "CREATIVE_ANGLE": "They know they want the classic Goa reunion weekend, but nobody wants to be the designated accountant chasing friends for petrol splits and cafe bills. Travafa's Shared Coordination feature brings shared expense tracking, net balance settlements, and shared trip checklists into one central hub, calculating exactly who owes whom in real-time so no one is stuck doing mental math at the beach.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 19,
+  "FINAL_PART_SECONDS": 3,
+  "LOOK_CONSTRAINTS": "time_of_day: golden hour, warm low-angle sunlight; weather: clear sky, dry conditions; palette: warm earth tones, ochre and terracotta; film_look: hyperlapse, accelerated motion; human_presence: two travellers together, friends or partners",
+  "CharacterStyle": "Two young Indian friends in casual coastal wear: one in an open terracotta-hued short-sleeve linen shirt over a plain cream tank with rolled olive cotton shorts and a braided leather wristband; the other wearing an ochre oversized graphic tee, ecru linen drawstring trousers, and round tortoiseshell sunglasses hooked onto the collar.",
+  "Setting": "A rustic wooden cliffside cafe overlooking Vagator beach, with woven cane chairs, laterite brick accents, thatched bamboo pergolas, and the Arabian Sea reflecting warm low-angle sunlight in the background.",
+  "ReferenceTone": "Sun-drenched, candid documentary style with rich earthy ochres and terracotta tones; authentic, vibrant group energy captured in dynamic, accelerated golden-hour light.",
+  "PhoneShotAction": "Leaning naturally against the rustic wooden railing, one friend holds the phone at chest height and taps into Travafa to log the shared cafe bill, showing the expense effortlessly split across the group balance list right in front of them.",
+  "$dials": {
+    "time_of_day": "golden_hour",
+    "weather": "clear_sky",
+    "palette": "warm_earth",
+    "film_look": "hyperlapse",
+    "subject_focus": "interaction_led",
+    "human_presence": "couple",
+    "caption_structure": "hook_value_cta",
+    "copy_tone": "playful",
+    "hashtag_mix": "balanced",
+    "product_focus": "shared_coordination",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "destination_ease"
+  }
+}

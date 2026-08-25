@@ -16,8 +16,11 @@ const ai = new GoogleGenAI({ apiKey });
 // Change this to whatever you want to test — a real travel-post style prompt
 // works better than something generic, since that's the actual use case.
 const prompt =
-  "Cinematic drone shot descending toward a quiet Goa beach at golden hour, " +
-  "turquoise water, palm trees swaying in the breeze, warm cinematic tones, vertical 9:16";
+  "Two excited friends sitting together on a couch in a cozy living room, warm evening light, " +
+  "one of them holds up a phone showing a flight booking app with a Tokyo flight confirmed, " +
+  "she smiles and says 'Japan, here we come!' while the other claps happily, " +
+  "phone screen glowing warmly in the low light, shallow depth of field, cinematic tones, " +
+  "camera slowly pushes in, vertical 9:16";
 
 async function main() {
   console.log("Submitting video generation request to Veo 3.1...");

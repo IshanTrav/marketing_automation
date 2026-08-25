@@ -1,3 +1,21 @@
 node_modules/
 .env
 *.mp4
+
+# Downloaded tool binary, not project source.
+/cloudflared
+
+# Generated/working output - reproducible from the pipeline, not source.
+# Underscore-prefixed entries under prompts/ are this project's own scratch-output
+# convention (_refs, _reel, _build, _frames, ...); everything else listed here is a
+# named manual test run (topic-named dirs of rendered clips/frames from earlier in
+# development). None of it is source - the scripts and templates that produced it are.
+/prompts/_*
+/prompts/compare/
+/prompts/festive/
+/prompts/hotel/
+/prompts/ladakh/
+/prompts/ladakh-itin/
+/prompts/mumbai/
+/_reel/
+/output_video.mp4

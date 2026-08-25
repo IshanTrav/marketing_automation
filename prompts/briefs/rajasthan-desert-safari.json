@@ -1,0 +1,32 @@
+{
+  "OBJECTIVE": "consideration",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Rajasthan desert safari with family",
+  "TARGET_AUDIENCE": "Urban Indian family organizers aged 28–40 who have saved dozens of Thar desert reels and want to plan a multi-generational desert safari with kids and elderly parents without exhaustion or logistics meltdowns.",
+  "PAIN_POINT": "Desert safari tours cram a 45-km bumpy jeep transfer, dune bashing, camel rides, and folk performances into a chaotic 4-hour rush, ignoring that elderly parents cannot handle rough camel saddles and kids crash in the extreme evening temperature drop.",
+  "PRODUCT_FOCUS": "AI trip planner",
+  "DESTINATION": "Jaisalmer and Sam Sand Dunes, Rajasthan",
+  "CREATIVE_ANGLE": "They know they want the golden dunes and a night under the desert stars. They do not know how to sequence the travel time from Jaisalmer fort, swap rough camel treks for gentle carts for grandparents, or buffer rest periods so the entire family actually enjoys the sunset. The Travafa AI trip planner takes the family profile, trip duration, and desert intent to output a paced, editable day-by-day itinerary with age-appropriate activity sequencing built right in.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 19,
+  "FINAL_PART_SECONDS": 3,
+  "LOOK_CONSTRAINTS": "time_of_day: blue hour dusk, deep blue ambient light; weather: just after rain, wet reflective surfaces; palette: cool blues and teals; film_look: 16mm film grain, slight halation; human_presence: one traveller seen from behind, face not visible",
+  "CharacterStyle": "Indigo-dyed handloom cotton overshirt worn open over a slate grey henley, dark charcoal travel trousers, brass-buckled leather sandals, and a weathered tan leather daypack slung over one shoulder.",
+  "Setting": "A carved golden-sandstone haveli rooftop terrace in Jaisalmer, with rainwater pooled across polished stone flagstones reflecting deep teal dusk light, overlooking the silhouettes of desert bastions.",
+  "ReferenceTone": "Atmospheric 16mm documentary look with cool blue hour grading, tactile wet-stone reflections, delicate lantern halation, and quiet, grounded realism.",
+  "PhoneShotAction": "The traveller, seen from behind looking out across the wet parapet at dusk, holds the phone displaying the day-by-day safari plan as family members gather beside them to point at the screen and talk through tomorrow's route.",
+  "$dials": {
+    "time_of_day": "blue_hour_dusk",
+    "weather": "post_rain_wet",
+    "palette": "cool_blue_teal",
+    "film_look": "film_grain_16mm",
+    "subject_focus": "object_detail",
+    "human_presence": "solo_back_to_camera",
+    "caption_structure": "question_answer",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "destination_heavy",
+    "product_focus": "ai_trip_planner",
+    "product_presence": "feature_enacted",
+    "payoff_scene": "packing_out"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "OBJECTIVE": "consideration",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Spiritual Ladakh trip",
+  "TARGET_AUDIENCE": "Solo Indian male traveller, late twenties to early thirties, urban professional, spiritually curious — drawn to monastery stays and silent landscapes but overwhelmed by the complexity of planning an altitude-heavy, permit-restricted trip.",
+  "PAIN_POINT": "Ladakh's most sacred gompas are hours apart on high-altitude mountain roads. Acclimatisation days must be locked in before any monastery visit is even possible. Inner Line Permits for Nubra and Pangong take a full day to arrange, and monastery prayer timings are almost impossible to find online. He has a rough idea of the experience he wants — Hemis, Diskit, the prayer flags at Khardung La — but turning that into an actual day-by-day plan with the right acclimatisation buffer, permit day, and drive times feels like a research project he keeps putting off.",
+  "PRODUCT_FOCUS": "AI trip planner",
+  "DESTINATION": "Ladakh — Leh, Hemis Monastery, Diskit Monastery, Khardung La",
+  "CREATIVE_ANGLE": "He knows he wants the monastery circuit. He does not know what day to land, when to attempt altitude, which permits to get first, or how to sequence it so he actually gets inside the gompas rather than spending the whole trip adjusting. The Travafa AI planner takes the destination, duration and the spiritual-circuit intent and turns it into a day-by-day plan that already has the acclimatisation rest days built in, the permit day placed correctly, and the monastery visits sequenced for morning prayer — so what looked like a month of research becomes something he can actually book.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 19,
+  "FINAL_PART_SECONDS": 3,
+  "LOOK_CONSTRAINTS": "time_of_day: sunrise, soft low sun, long cool shadows; weather: clear sky, dry conditions; palette: warm earth tones, ochre and terracotta; film_look: handheld documentary feel, minor natural shake; human_presence: one traveller, face visible",
+  "CharacterStyle": "Indian male, late twenties, lean build, short neat dark hair with slight stubble; a faded olive-khaki full-zip fleece over a plain white base layer; simple silver thumb ring; small worn canvas backpack worn on one shoulder; calm, unhurried expression — someone at ease with solitude.",
+  "Setting": "A sparse, whitewashed monastery courtyard at first light — Hemis or Diskit style: low ochre-painted prayer walls, strings of faded prayer flags catching a cold morning breeze, a single butter-lamp still burning in a stone alcove, the high Ladakhi mountain ridge visible above the monastery roofline. The quality of light is early winter sunrise: deep cobalt sky fading to apricot at the horizon, long shadows across the stone courtyard floor.",
+  "ReferenceTone": "Handheld documentary travel UGC — intentionally imperfect framing, slight natural camera shake, raw and quiet, not polished advertising. Warm ochre and terracotta with the cool cobalt of the pre-dawn sky. The mood is stillness and deliberate slowness.",
+  "PhoneShotAction": "He holds the phone in one hand, standing at the edge of the monastery courtyard, and uses Travafa's AI trip planner to build a day-by-day Ladakh itinerary — typing his destination and travel dates and watching the acclimatisation days, permit day and monastery visits land in order on screen.",
+  "$dials": {
+    "time_of_day": "sunrise",
+    "weather": "clear_sky",
+    "palette": "warm_earth",
+    "film_look": "handheld_doc",
+    "subject_focus": "person_led",
+    "human_presence": "solo_face_visible",
+    "caption_structure": "short_story",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "destination_heavy",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "destination_ease"
+  }
+}

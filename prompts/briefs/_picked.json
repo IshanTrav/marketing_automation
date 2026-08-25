@@ -1,0 +1,19 @@
+{
+  "LOOK_CONSTRAINTS": "time_of_day: sunrise, soft low sun, long cool shadows; weather: active monsoon rain, visible raindrops; palette: muted pastel tones, low saturation; film_look: clean modern digital capture, sharp; human_presence: two travellers together, friends or partners",
+  "CREATIVE_ANGLE_DIALS": "subject_focus: an interaction with a local, vendor or guide is the subject; payoff_scene: leaving home with a packed bag, the trip beginning",
+  "PRODUCT_FOCUS_DIALS": "product_presence: someone is using an unbranded travel booking app on a phone",
+  "CAPTION_DIALS": "caption_structure: one punchy line, then CTA; copy_tone: reassuring, trust-building; hashtag_mix: weighted toward destination tags",
+  "$dials": {
+    "time_of_day": "sunrise",
+    "weather": "monsoon_rain",
+    "palette": "muted_pastel",
+    "film_look": "clean_digital",
+    "subject_focus": "interaction_led",
+    "human_presence": "couple",
+    "caption_structure": "punchy_line_cta",
+    "copy_tone": "reassuring",
+    "hashtag_mix": "destination_heavy",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "packing_out"
+  }
+}

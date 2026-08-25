@@ -1,0 +1,27 @@
+{
+  "TOPIC": "Get great travel discounts on Travafa",
+  "TARGET_AUDIENCE": "Indian travellers aged 22-35, app-first, price-aware, who compare across several sites before booking anything and are convinced they are always one tab away from a better price",
+  "PRODUCT_FOCUS": "Comparing the available options in one place before booking",
+  "KNOWN_PRODUCT_CAPABILITIES": [
+    "Explore destinations by city",
+    "Browse curated places based on stated preferences",
+    "Search and book flights: one-way or round-trip, with from, to, depart date, travellers and cabin",
+    "Search hotels",
+    "Browse and add activities",
+    "Arrange transfers",
+    "Create a trip that holds multiple destinations and a count of activities",
+    "Plan a trip together with other travellers on one shared trip",
+    "Chats attached to a trip",
+    "Create Memories from photos already on the phone (app only)"
+  ],
+  "DESTINATION": "not fixed - the traveller is still deciding",
+  "CREATIVE_ANGLE": "Hunting for a better price is its own full-time job. You open a sixth tab, the first price has changed, and you no longer know whether you found a deal or just lost an hour.",
+  "CTA": "Comment TRAVAFA",
+  "REFERENCE_ASSETS": {
+    "REFERENCE_1_TRAVELER": "assets/ref/traveller.png - South Indian woman, late twenties, wheatish complexion, dark wavy hair tied back, small gold studs, cream linen shirt",
+    "REFERENCE_2_PHONE": "assets/ref/phone-bare.png - iPhone, blank screen, neutral grey background",
+    "REFERENCE_3_TRAVAFA_UI": "assets/app/flight-search.png - the real Travafa flight search screen"
+  },
+  "TOTAL_DURATION_SECONDS": 16,
+  "OBJECTIVE": "action"
+}

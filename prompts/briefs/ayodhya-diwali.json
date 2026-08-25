@@ -1,0 +1,43 @@
+{
+  "TOPIC": "Let us go to Ayodhya this Diwali",
+  "TARGET_AUDIENCE": "Indian travellers planning festive-season travel, often with a parent or an older relative, who want to be at Ayodhya for Deepotsav but have never planned a trip around a festival crowd before",
+  "PRODUCT_FOCUS": "Planning and organising a festive trip - the destination, the dates and what happens on each day, held in one place",
+  "KNOWN_PRODUCT_CAPABILITIES": [
+    "Explore destinations by city",
+    "Browse curated places based on stated preferences",
+    "Search and book flights: one-way or round-trip, with from, to, depart date, travellers and cabin",
+    "Search hotels",
+    "Browse and add activities",
+    "Arrange transfers",
+    "Create a trip that holds multiple destinations and a count of activities",
+    "Plan a trip together with other travellers on one shared trip",
+    "Chats attached to a trip",
+    "Create Memories from photos already on the phone (app only)"
+  ],
+  "DESTINATION": "Ayodhya, during Diwali",
+  "CREATIVE_ANGLE": "Everyone decides to go to Ayodhya for Diwali at the same moment, and then discovers the trip is not one booking but thirty small questions - which day the Deepotsav actually is, how early the ghats fill, where to stay when the town doubles in size, how anyone gets around once the roads close. Right now those answers live in forwarded messages, a cousin who went last year, and four browser tabs.",
+  "CTA": "Comment TRAVAFA",
+  "REFERENCE_ASSETS": {
+    "REFERENCE_1_TRAVELER": "assets/ref/traveller.png - South Indian woman, late twenties, wheatish complexion, dark wavy hair tied back, small gold studs, cream linen shirt",
+    "REFERENCE_2_PHONE": "assets/ref/phone-bare.png - iPhone, blank screen, neutral grey background",
+    "REFERENCE_3_TRAVAFA_UI": "assets/app/flight-search.png - the real Travafa flight search screen"
+  },
+  "TOTAL_DURATION_SECONDS": 16,
+  "LOOK_CONSTRAINTS": "time_of_day: golden hour, warm low-angle sunlight; weather: strong wind moving fabric, hair and foliage; palette: desaturated documentary colour grade; film_look: anamorphic lens, wide cinematic flares; human_presence: one parent and one child, two people only",
+  "CREATIVE_ANGLE_DIALS": "subject_focus: a single object is the subject — ticket, bag, map, phone; payoff_scene: leaving home with a packed bag, the trip beginning",
+  "PRODUCT_FOCUS_DIALS": "product_presence: the booking screen itself is the beat - comparing, confirming, sharing - shown unbranded and angled",
+  "CAPTION_DIALS": "caption_structure: one punchy line, then CTA; copy_tone: aspirational, evocative; hashtag_mix: weighted toward budget, deal and offer tags",
+  "$dials": {
+    "time_of_day": "golden_hour",
+    "weather": "windy",
+    "palette": "desaturated_doc",
+    "film_look": "anamorphic_cinematic",
+    "subject_focus": "object_detail",
+    "human_presence": "family_pair",
+    "caption_structure": "punchy_line_cta",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "budget_deal_heavy",
+    "product_presence": "app_screen_moment",
+    "payoff_scene": "packing_out"
+  }
+}

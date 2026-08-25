@@ -1,0 +1,30 @@
+{
+  "OBJECTIVE": "action",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Mumbai darshan during Ganesh Chaturthi",
+  "TARGET_AUDIENCE": "Two Indian friends in their late twenties, urban, planning a short Mumbai Ganesh Chaturthi trip together; the primary character is a South Indian woman, late twenties, with a wheatish complexion and expressive dark brown eyes.",
+  "PAIN_POINT": "They have saved dozens of Mumbai Ganesh Chaturthi reels but still cannot decide which darshan days to visit, where to stay near the pandals, or how to turn any of it into an actual day-by-day plan.",
+  "PRODUCT_FOCUS": "AI trip planner - Travafa's AI chat turns the Mumbai Ganesh Chaturthi visit into an editable day-by-day trip plan",
+  "DESTINATION": "Mumbai, during Ganesh Chaturthi",
+  "CREATIVE_ANGLE": "Everyone says go to Mumbai for Ganesh Chaturthi, nobody says which day. The festival runs eleven days and each one is a different thing - the arrival, the big pandals, the quiet neighbourhood ones, visarjan. Meanwhile the queues run past ten hours and the rooms near anything worth seeing go first. Right now that schedule lives in reels she saved, a friend who went in 2023, and a browser tab she keeps reopening. Travafa's AI planner is the thing that finally turns saved reels into a schedule.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 24,
+  "LOOK_CONSTRAINTS": "time_of_day: soft early-morning monsoon daylight from camera-left; weather: active monsoon, rain-speckled window; palette: muted mint and warm-neutral, low saturation; film_look: clean modern digital capture, sharp; human_presence: two friends together",
+  "CharacterStyle": "Thick dark wavy hair tied in a low, slightly loose bun with a few natural strands at the temples; small gold stud earrings; relaxed cream linen shirt over a muted teal cotton top; understated, practical travel style; natural minimal makeup.",
+  "Setting": "A contemporary Mumbai apartment dining nook before a Ganesh Chaturthi trip: pale oak table, a small marigold arrangement, a cloth tote and a notebook, rain-speckled window, soft early-morning monsoon daylight from camera-left. The second friend is only implied by a chair and a mug in the environment plate.",
+  "ReferenceTone": "Authentic phone-shot travel UGC, candid rather than glossy advertising, mint and warm-neutral palette, soft diffused monsoon daylight, clean modern digital detail.",
+  "PhoneShotAction": "She holds the phone just above the table and uses Travafa's AI trip planner to start organising Mumbai darshan days, places and travel dates for the two friends.",
+  "$dials": {
+    "time_of_day": "sunrise",
+    "weather": "monsoon_rain",
+    "palette": "muted_pastel",
+    "film_look": "clean_digital",
+    "subject_focus": "interaction_led",
+    "human_presence": "couple",
+    "caption_structure": "punchy_line_cta",
+    "copy_tone": "reassuring",
+    "hashtag_mix": "destination_heavy",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "packing_out"
+  }
+}

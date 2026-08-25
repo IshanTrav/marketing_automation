@@ -1,0 +1,27 @@
+{
+  "dials": {
+    "demo_style": "cutaway"
+  },
+  "output": {
+    "scenes": [
+      {
+        "scene_prompt": "A close-up introductory shot: the subject (use prompts/_refs/character.png for face reference) looks into camera and says a candid 1-2 sentence line about the product.",
+        "duration_seconds": 4,
+        "carries_dialogue": true,
+        "startImage": "prompts/_refs/character.png"
+      },
+      {
+        "scene_prompt": "A selfie-style 9:16 shot where the subject holds the product naturally and praises the key feature (use prompts/_refs/hero-phone.png as reference). Keep the phone invisible and preserve the product appearance.",
+        "duration_seconds": 4,
+        "carries_dialogue": true,
+        "startImage": "prompts/_refs/hero-phone.png"
+      },
+      {
+        "scene_prompt": "A short environmental cutaway showing the setting and atmosphere (use prompts/_refs/environment.png as background reference). No dialogue.",
+        "duration_seconds": 4,
+        "carries_dialogue": false,
+        "startImage": "prompts/_refs/environment.png"
+      }
+    ]
+  }
+}

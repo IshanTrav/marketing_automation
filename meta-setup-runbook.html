@@ -1,0 +1,293 @@
+<title>Meta API Setup Runbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper: #EEEDE5; --paper-raised: #F8F7F1; --ink: #1B2A33; --ink-muted: #5B6864;
+    --line: #D9D6C7; --accent: #1F6E64; --accent-soft: #E4ECE9;
+    --good: #3F7D46; --good-soft: #E4EFE1; --warn: #A9721F; --warn-soft: #F3E9D6;
+    --bad: #A23B2E; --bad-soft: #F3E1DC; --muted: #857F6E; --muted-soft: #E7E4D9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #12181B; --paper-raised: #1A2124; --ink: #E8E4D6; --ink-muted: #A6A290;
+      --line: #2B3336; --accent: #56ABA0; --accent-soft: #1C2C29;
+      --good: #79B77C; --good-soft: #1E2A1F; --warn: #D9A544; --warn-soft: #2E2717;
+      --bad: #D9776A; --bad-soft: #2E1E1A; --muted: #9C9686; --muted-soft: #23231E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #12181B; --paper-raised: #1A2124; --ink: #E8E4D6; --ink-muted: #A6A290;
+    --line: #2B3336; --accent: #56ABA0; --accent-soft: #1C2C29;
+    --good: #79B77C; --good-soft: #1E2A1F; --warn: #D9A544; --warn-soft: #2E2717;
+    --bad: #D9776A; --bad-soft: #2E1E1A; --muted: #9C9686; --muted-soft: #23231E;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans",ui-sans-serif,sans-serif; font-size:16px; line-height:1.6; }
+  a{ color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover, a:focus-visible{ border-bottom-color: var(--accent); }
+  .sheet{ max-width: 880px; margin: 0 auto; padding: 56px 24px 96px; }
+  .kicker{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  header.cover{ border-bottom:1px solid var(--line); padding-bottom:28px; margin-bottom:40px; }
+  header.cover h1{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.02; margin:10px 0 8px; text-wrap:balance; }
+  header.cover .dek{ font-size:1.05rem; color:var(--ink-muted); max-width:640px; margin:0 0 20px; }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:8px 22px; font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-muted); }
+  .meta-row strong{ color:var(--ink); font-weight:600; }
+  section.block{ margin-bottom:40px; }
+  h2.section-title{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.5rem; margin:0 0 14px; text-wrap:balance; }
+  .manifest{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; font-family:"IBM Plex Mono",monospace; font-size:12.5px; }
+  .manifest a{ background:var(--paper-raised); padding:11px 12px; color:var(--ink); display:block; }
+  .manifest a:hover{ background:var(--accent-soft); color:var(--accent); }
+  .manifest a .n{ color:var(--accent); margin-right:6px; }
+  @media (max-width:640px){ .manifest{ grid-template-columns:1fr; } }
+  .part{ padding-top:34px; border-top:1px solid var(--line); scroll-margin-top:16px; }
+  .part-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .part-code{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent); letter-spacing:.08em; border:1px solid var(--accent); border-radius:3px; padding:2px 7px; flex-shrink:0; }
+  .part h3{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.4rem; margin:0; text-wrap:balance; }
+  .part .lede{ color:var(--ink-muted); max-width:66ch; margin:0 0 18px; }
+  ol.steps{ margin:0; padding-left: 22px; max-width: 70ch; }
+  ol.steps > li{ margin-bottom: 14px; padding-left: 4px; }
+  ol.steps > li::marker{ font-family:"IBM Plex Mono",monospace; color: var(--accent); font-weight:600; }
+  code, .field{ font-family:"IBM Plex Mono",monospace; font-size:0.92em; background:var(--paper-raised); border:1px solid var(--line); border-radius:3px; padding:1px 5px; }
+  pre{ background:var(--paper-raised); border:1px solid var(--line); border-radius:6px; padding:14px 16px; overflow-x:auto; font-family:"IBM Plex Mono",monospace; font-size:13px; line-height:1.55; margin: 10px 0; }
+  pre code{ background:none; border:none; padding:0; }
+  .callout{ margin-top:12px; padding:12px 16px; border-radius:0 4px 4px 0; max-width:70ch; font-size:14.5px; }
+  .callout strong{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:4px; }
+  .callout.warn{ background:var(--warn-soft); border-left:3px solid var(--warn); }
+  .callout.warn strong{ color:var(--warn); }
+  .callout.bad{ background:var(--bad-soft); border-left:3px solid var(--bad); }
+  .callout.bad strong{ color:var(--bad); }
+  .callout.good{ background:var(--good-soft); border-left:3px solid var(--good); }
+  .callout.good strong{ color:var(--good); }
+  .table-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:6px; margin: 16px 0; }
+  table{ width:100%; border-collapse:collapse; font-size:14px; min-width:560px; }
+  th,td{ padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{ background:var(--paper-raised); font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; }
+  tbody tr:last-child td{ border-bottom:none; }
+  footer.dossier{ margin-top:56px; padding-top:20px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-muted); }
+</style>
+
+<div class="sheet">
+
+  <header class="cover">
+    <span class="kicker">Setup Runbook · Reusable Guide</span>
+    <h1>Meta API Setup Runbook</h1>
+    <p class="dek">Every step we actually took to link Instagram + Facebook, create a Meta Developer App, get real access tokens, and publish a test image and video to both platforms — written down so it can be redone for Travafa's real account without relearning it.</p>
+    <div class="meta-row">
+      <span>Tested on: <strong>a personal sandbox account</strong></span>
+      <span>Result: <strong>image + video published on both platforms</strong></span>
+      <span>App Review needed: <strong>no (Standard Access)</strong></span>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2 class="section-title">Contents</h2>
+    <div class="manifest">
+      <a href="#part-a"><span class="n">A</span>Link Instagram to a Facebook Page</a>
+      <a href="#part-b"><span class="n">B</span>Register as a Meta Developer</a>
+      <a href="#part-c"><span class="n">C</span>Create the Developer App</a>
+      <a href="#part-d"><span class="n">D</span>Grant yourself access (Roles)</a>
+      <a href="#part-e"><span class="n">E</span>Turn on the permissions you need</a>
+      <a href="#part-f"><span class="n">F</span>Get real access tokens</a>
+      <a href="#part-g"><span class="n">G</span>Test-publish to Instagram</a>
+      <a href="#part-h"><span class="n">H</span>Test-publish to Facebook</a>
+      <a href="#part-i"><span class="n">I</span>The local code scaffold</a>
+      <a href="#part-j"><span class="n">J</span>Troubleshooting — every error we actually hit</a>
+    </div>
+  </section>
+
+  <!-- PART A -->
+  <section class="part" id="part-a">
+    <div class="part-head"><span class="part-code">A</span><h3>Link Instagram to a Facebook Page</h3></div>
+    <p class="lede">Do this before touching any developer tools — everything downstream depends on this link existing first.</p>
+    <ol class="steps">
+      <li>Create (or confirm) a <strong>Facebook Page</strong> — any personal Facebook account can create one for free, instantly.</li>
+      <li>On the Instagram account: open the app → profile → <strong>☰ menu → Settings and privacy → Account type and tools → Switch to professional account</strong>. Pick any category. When asked <strong>Creator or Business</strong>, pick <strong>Business</strong>.</li>
+      <li>During that same flow, Instagram offers to connect a Facebook Page — pick the one from step 1. This does the linking in one shot.</li>
+      <li>If you skipped that prompt, do it after the fact: profile → <strong>Edit profile → Public business information → Page → Connect or create</strong>.</li>
+      <li>Confirm it worked: <strong>Edit profile → Public business information</strong> should show the Page's name next to "Facebook", and Category should show "Business".</li>
+    </ol>
+    <div class="callout warn"><strong>What tripped us up</strong>The "Account type and tools" screen does <em>not</em> show the Page-link status in newer Instagram versions — that moved to <code>Edit profile → Public business information</code>. Don't go looking for it in the wrong menu.</div>
+  </section>
+
+  <!-- PART B -->
+  <section class="part" id="part-b">
+    <div class="part-head"><span class="part-code">B</span><h3>Register as a Meta Developer</h3></div>
+    <p class="lede">A one-time activation on your <em>existing</em> Facebook login — not a separate account.</p>
+    <ol class="steps">
+      <li>Go to <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a>, log in with the <strong>same</strong> Facebook account that owns the Page from Part A.</li>
+      <li>Click <strong>"Get Started"</strong> — this opens the registration dialog: Register → Verify account → Contact info → About you.</li>
+      <li><strong>Verify account</strong> asks for a phone number. Clicking "Send Verification SMS" may redirect you: <em>"You can only complete this action in Accounts Center."</em></li>
+      <li>If so, go to <a href="https://accountscenter.facebook.com" target="_blank">accountscenter.facebook.com</a> → <strong>Profiles and personal details → Contact info → Add new contact → Add mobile number</strong>. When it asks which profiles to attach the number to, <strong>make sure your Facebook profile is checked</strong>, not just Instagram accounts.</li>
+      <li>Back on the developer registration tab, continue — <strong>Contact info</strong> (confirm your email) → <strong>About you</strong> (pick any occupation, e.g. "Other") → <strong>Complete Registration</strong>.</li>
+    </ol>
+    <div class="callout warn"><strong>What tripped us up</strong>On the "Add a mobile number" screen, the checklist of accounts to attach the number to defaults to Instagram accounts only — the Facebook profile checkbox can be unticked. If it is, phone verification for the developer account never completes. Tick it explicitly.</div>
+  </section>
+
+  <!-- PART C -->
+  <section class="part" id="part-c">
+    <div class="part-head"><span class="part-code">C</span><h3>Create the Developer App</h3></div>
+    <ol class="steps">
+      <li><strong>My Apps → Create App.</strong></li>
+      <li><strong>Use cases</strong> step: filter by <strong>"Content management"</strong> (not "Featured") and select both:
+        <ul><li><code>Manage messaging & content on Instagram</code></li><li><code>Manage everything on your Page</code></li></ul>
+      </li>
+      <li><strong>Business</strong> step: it auto-attaches to whichever Business Portfolio owns your assets. If none exists yet, one gets created automatically — this is fine for a Standard Access, no-App-Review setup.</li>
+      <li><strong>Requirements</strong> step: should say "No requirements for the use cases on this app" — if so, nothing to fill in.</li>
+      <li><strong>Overview</strong> step → <strong>Create app</strong>.</li>
+      <li>On the app dashboard, go to <strong>App settings → Basic</strong> and copy the <strong>App ID</strong> and <strong>App Secret</strong> somewhere safe.</li>
+    </ol>
+  </section>
+
+  <!-- PART D -->
+  <section class="part" id="part-d">
+    <div class="part-head"><span class="part-code">D</span><h3>Grant yourself access (Roles)</h3></div>
+    <ol class="steps">
+      <li><strong>App roles → Roles</strong> — your own account should already show as <strong>Administrator</strong> (automatic, since you created the app).</li>
+      <li>Click <strong>"Add People"</strong> → select role <strong>"Instagram Tester"</strong> (listed separately, under "Additional roles for this app") → search and add the Instagram account from Part A → send.</li>
+      <li>Now switch to Instagram itself to accept the invite: <strong>Settings and privacy → search "Tester"</strong> in the settings search bar, or try <a href="https://instagram.com" target="_blank">instagram.com</a> on the web if the app doesn't show it.</li>
+    </ol>
+    <div class="callout bad"><strong>Known bug — this genuinely doesn't always show up</strong>Meta's own developer community has open threads about Instagram Tester invites never appearing in the mobile app at all, only reachable via web. If you search Instagram's settings and find nothing, try the web version at instagram.com before assuming you did something wrong. Confirm it's accepted by checking back on the app's <strong>Roles</strong> page — the "Pending" tag next to the tester's name disappears once accepted.</div>
+  </section>
+
+  <!-- PART E -->
+  <section class="part" id="part-e">
+    <div class="part-head"><span class="part-code">E</span><h3>Turn on the permissions you need</h3></div>
+    <p class="lede">Selecting a use case in Part C does not automatically enable every permission — each one has to be individually turned on.</p>
+
+    <div class="callout good"><strong>Instagram side</strong>App dashboard → left sidebar → <strong>your Instagram product → API setup with Instagram login</strong> → section "1. Add required messaging permissions" → click <strong>"Add all required permissions"</strong> (adds <code>instagram_business_basic</code>, <code>instagram_business_manage_comments</code>, <code>instagram_business_manage_messages</code>). Then separately open <strong>Permissions and features</strong> in the same left menu, search <code>instagram_business_content_publish</code>, and click <strong>+ Add</strong> — this one is <em>not</em> included in the "required" bundle but is what actually lets you publish.</div>
+
+    <div class="callout good" style="margin-top:14px;"><strong>Facebook Page side</strong>App dashboard → <strong>Use cases → Manage Pages → Permissions and features</strong>. Search each of these and click <strong>+ Add</strong> until the Status column says <strong>"Ready for testing"</strong>:
+      <div class="table-wrap"><table><tbody>
+        <tr><td><code>pages_show_list</code></td><td>often already "Ready for testing" by default</td></tr>
+        <tr><td><code>pages_read_engagement</code></td><td>add manually</td></tr>
+        <tr><td><code>pages_manage_posts</code></td><td>add manually — this is the one that actually publishes</td></tr>
+      </tbody></table></div>
+    </div>
+
+    <div class="callout warn" style="margin-top:14px;"><strong>Don't chase <code>publish_video</code></strong>An old Facebook error ("No permission to publish the video") points at a permission called <code>publish_video</code>. It's deprecated and won't appear in any current permission picker. Ignore it — <code>pages_manage_posts</code> is genuinely enough for video too. If video publishing fails, the real cause is almost always the access token (see Part J), not a missing permission.</div>
+  </section>
+
+  <!-- PART F -->
+  <section class="part" id="part-f">
+    <div class="part-head"><span class="part-code">F</span><h3>Get real access tokens</h3></div>
+
+    <div class="callout good"><strong>Instagram token — the easy one</strong>App dashboard → Instagram product → <strong>API setup with Instagram login → "2. Generate access tokens"</strong> (click the row to expand it if collapsed — it starts closed). Add your Instagram Tester account, generate the token, copy it. Also note your <strong>Instagram App ID</strong> shown near the top of this same page.</div>
+
+    <div class="callout good" style="margin-top:14px;"><strong>Your numeric Instagram User ID</strong>
+<pre><code>curl -i -X GET "https://graph.instagram.com/me?fields=id,username&access_token=YOUR_IG_TOKEN"</code></pre>
+    Returns <code>{"id": "...", "username": "..."}</code> — save that <code>id</code>.</div>
+
+    <div class="callout bad" style="margin-top:14px;"><strong>Facebook Page token — the hard one, do it exactly this way</strong>
+    <ol class="steps" style="margin-top:8px;">
+      <li>Go to <a href="https://developers.facebook.com/tools/explorer" target="_blank">Graph API Explorer</a>, select your app.</li>
+      <li><strong>Do not</strong> rely on <code>GET /me/accounts</code> — if your Page is managed through a Business Portfolio (likely), this returns <code>{"data":[]}</code> even though you have full access. This is a real Graph API quirk, not a permission problem.</li>
+      <li>Under "User or Page" dropdown → click the <strong>"Get Page Access Token"</strong> text option (not the search box). This triggers a real <strong>"Facebook Login for Business"</strong> consent popup — "Continue as [your name]?" — accept it. This step matters: a token generated by just ticking permission checkboxes without going through this actual consent popup will look valid but silently fail to publish later.</li>
+      <li>Make sure permissions <code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_posts</code> are all checked before generating.</li>
+      <li>Find your Page's numeric ID: <a href="https://business.facebook.com" target="_blank">business.facebook.com</a> → Business Settings → Accounts → Pages → click your Page → the ID is shown in the panel / URL.</li>
+      <li>Use the User token from step 3 to pull the Page's own token directly — this works even when <code>/me/accounts</code> doesn't:
+<pre><code>curl -s -X GET "https://graph.facebook.com/YOUR_PAGE_ID?fields=access_token,name&access_token=YOUR_USER_TOKEN"</code></pre>
+      The <code>access_token</code> in that response is the real Page Access Token — use this one, not the User token, for every publish call.</li>
+    </ol>
+    </div>
+  </section>
+
+  <!-- PART G -->
+  <section class="part" id="part-g">
+    <div class="part-head"><span class="part-code">G</span><h3>Test-publish to Instagram</h3></div>
+    <p class="lede">Two-step for images, three-step for video (there's a processing wait in between).</p>
+
+    <div class="callout good"><strong>Image</strong>
+<pre><code>curl -i -X POST "https://graph.instagram.com/v21.0/YOUR_IG_ID/media" \
+  -d "image_url=&lt;public image url&gt;" \
+  -d "caption=Test post" \
+  -d "access_token=YOUR_IG_TOKEN"
+# returns a container id, then:
+curl -i -X POST "https://graph.instagram.com/YOUR_IG_ID/media_publish" \
+  -d "creation_id=CONTAINER_ID" \
+  -d "access_token=YOUR_IG_TOKEN"</code></pre></div>
+
+    <div class="callout good" style="margin-top:14px;"><strong>Video / Reel</strong>
+<pre><code>curl -i -X POST "https://graph.instagram.com/v21.0/YOUR_IG_ID/media" \
+  -d "media_type=REELS" \
+  -d "video_url=&lt;public video url&gt;" \
+  -d "caption=Test video" \
+  -d "access_token=YOUR_IG_TOKEN"
+# poll until finished:
+curl -i -X GET "https://graph.instagram.com/CONTAINER_ID?fields=status_code&access_token=YOUR_IG_TOKEN"
+# when status_code = FINISHED:
+curl -i -X POST "https://graph.instagram.com/YOUR_IG_ID/media_publish" \
+  -d "creation_id=CONTAINER_ID" \
+  -d "access_token=YOUR_IG_TOKEN"</code></pre></div>
+
+    <div class="callout warn"><strong>What tripped us up</strong>Wikipedia/Wikimedia image URLs get rejected — <code>"media file could not be downloaded from this URI"</code> — because Wikimedia blocks bot-style fetch requests. Any plain static asset host works fine (we used a GitHub-hosted image and raw video file successfully).</div>
+  </section>
+
+  <!-- PART H -->
+  <section class="part" id="part-h">
+    <div class="part-head"><span class="part-code">H</span><h3>Test-publish to Facebook</h3></div>
+
+    <div class="callout good"><strong>Photo — one call</strong>
+<pre><code>curl -i -X POST "https://graph.facebook.com/v26.0/YOUR_PAGE_ID/photos" \
+  -d "url=&lt;public image url&gt;" \
+  -d "caption=Test photo" \
+  -d "published=true" \
+  -d "access_token=YOUR_PAGE_TOKEN"</code></pre></div>
+
+    <div class="callout good" style="margin-top:14px;"><strong>Video — one call, hosted-URL flow</strong>
+<pre><code>curl -i -X POST "https://graph.facebook.com/v26.0/YOUR_PAGE_ID/videos" \
+  -d "file_url=&lt;public video url&gt;" \
+  -d "description=Test video" \
+  -d "published=true" \
+  -d "access_token=YOUR_PAGE_TOKEN"</code></pre>
+    Note the field is <code>file_url</code> here, not <code>video_url</code> like Instagram uses.</div>
+
+    <div class="callout warn"><strong>Confirming a post actually exists</strong>Don't just scroll the Page looking for it. Query it directly:
+<pre><code>curl -s -X GET "https://graph.facebook.com/YOUR_POST_ID?fields=id,permalink_url&access_token=YOUR_PAGE_TOKEN"</code></pre>
+    Returns a direct link you can open in a browser. Also: the <strong>Page</strong> ("IshanTravafa") and your <strong>personal profile</strong> ("Ishan Travafa") can have near-identical names — make sure you're looking at <code>facebook.com/YOUR_PAGE_ID</code>, not your own personal timeline.</div>
+  </section>
+
+  <!-- PART I -->
+  <section class="part" id="part-i">
+    <div class="part-head"><span class="part-code">I</span><h3>The local code scaffold</h3></div>
+    <p class="lede">A small Node.js project wraps all of the above into runnable scripts instead of manual curl every time.</p>
+    <pre><code>automation/
+├── test-veo.js                  → generates a video with Veo 3.1
+├── upload-to-gcs.js             → uploads a local file to GCS, returns a public URL
+├── publish-instagram-video.js   → npm run publish-ig-video "&lt;url&gt;" ["caption"]
+├── publish-facebook-photo.js    → npm run publish-fb-photo "&lt;url&gt;" ["caption"]
+├── publish-facebook-video.js    → npm run publish-fb-video "&lt;url&gt;" ["description"]
+├── .env                          → all keys/tokens (gitignored, never committed)
+└── .env.example                  → the same keys, empty — safe to commit</code></pre>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Package</th><th>Used for</th></tr></thead>
+      <tbody>
+        <tr><td><code>@google/genai</code></td><td>Gemini API + Veo video generation</td></tr>
+        <tr><td><code>@google-cloud/storage</code></td><td>uploading generated media to GCS</td></tr>
+        <tr><td><code>dotenv</code></td><td>loading <code>.env</code> into each script</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- PART J -->
+  <section class="part" id="part-j">
+    <div class="part-head"><span class="part-code">J</span><h3>Troubleshooting — every error we actually hit</h3></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Symptom</th><th>Real cause</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Phone verification stuck in developer registration</td><td>Meta redirects phone verification to Accounts Center</td><td>Add/verify the number at accountscenter.facebook.com, tick the Facebook profile checkbox specifically</td></tr>
+          <tr><td>Instagram Tester invite not visible anywhere</td><td>Known bug — invite sometimes never renders in the mobile app</td><td>Check instagram.com on the web instead; confirm via the "Pending" tag clearing on the app's Roles page</td></tr>
+          <tr><td><code>"media file could not be downloaded from this URI"</code></td><td>Hosting site (e.g. Wikimedia) blocks bot fetch requests</td><td>Use a different static host — GitHub raw content and GCS public URLs both worked</td></tr>
+          <tr><td><code>GET /me/accounts</code> returns <code>{"data":[]}</code></td><td>Page is managed via a Business Portfolio, not a classic personal-owned Page</td><td>Fetch the token directly: <code>GET /{page-id}?fields=access_token</code> using a User token</td></tr>
+          <tr><td>Facebook publish fails with a permission-looking error despite correct permissions</td><td>The token wasn't generated through a real OAuth consent screen</td><td>Use Graph API Explorer's "Get Page Access Token" menu item and accept the "Continue as [name]?" popup — don't just tick permission boxes</td></tr>
+          <tr><td><code>"(#100) No permission to publish the video"</code></td><td>Almost always the wrong/stale token being used, not a missing permission</td><td>Regenerate via the proper consent flow (previous row) and retry — <code>publish_video</code> is obsolete, don't chase it</td></tr>
+          <tr><td>Can't find a just-published post by scrolling the Page</td><td>Looking at the personal profile instead of the Page, or checking Timeline instead of the Photos tab</td><td>Query <code>GET /{post-id}?fields=permalink_url</code> and open that link directly</td></tr>
+          <tr><td>git push denied with the wrong account's name in the error</td><td>VS Code's own GitHub session (<code>GIT_ASKPASS</code>) silently supplies cached credentials for a different account</td><td>Run <code>GIT_ASKPASS= GIT_TERMINAL_PROMPT=1 git push</code> to force a real terminal prompt, or sign out of the account in VS Code's Accounts menu</td></tr>
+          <tr><td>API response includes a deprecation warning about the version</td><td><code>v21.0</code> is deprecated on graph.facebook.com</td><td>Use <code>v26.0</code> (or whatever the current version is at setup time) — <code>graph.instagram.com</code> is on a separate cycle and was unaffected</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="dossier">Meta API Setup Runbook — v1 · Written from a real sandbox run-through, not documentation alone</footer>
+</div>

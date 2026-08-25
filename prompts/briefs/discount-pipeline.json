@@ -1,0 +1,43 @@
+{
+  "TOPIC": "Get great travel discounts on Travafa",
+  "TARGET_AUDIENCE": "Indian travellers aged 22-35, app-first, price-aware, who compare across several sites before booking anything and are convinced they are always one tab away from a better price",
+  "PRODUCT_FOCUS": "Comparing the available options in one place before booking",
+  "KNOWN_PRODUCT_CAPABILITIES": [
+    "Explore destinations by city",
+    "Browse curated places based on stated preferences",
+    "Search and book flights: one-way or round-trip, with from, to, depart date, travellers and cabin",
+    "Search hotels",
+    "Browse and add activities",
+    "Arrange transfers",
+    "Create a trip that holds multiple destinations and a count of activities",
+    "Plan a trip together with other travellers on one shared trip",
+    "Chats attached to a trip",
+    "Create Memories from photos already on the phone (app only)"
+  ],
+  "DESTINATION": "not fixed - the traveller is still deciding",
+  "CREATIVE_ANGLE": "Hunting for a better price is its own full-time job. You open a sixth tab, the first price has changed, and you no longer know whether you found a deal or just lost an hour.",
+  "CTA": "Comment TRAVAFA",
+  "REFERENCE_ASSETS": {
+    "REFERENCE_1_TRAVELER": "assets/ref/traveller.png - South Indian woman, late twenties, wheatish complexion, dark wavy hair tied back, small gold studs, cream linen shirt",
+    "REFERENCE_2_PHONE": "assets/ref/phone-bare.png - iPhone, blank screen, neutral grey background",
+    "REFERENCE_3_TRAVAFA_UI": "assets/app/flight-search.png - the real Travafa flight search screen"
+  },
+  "TOTAL_DURATION_SECONDS": 16,
+  "LOOK_CONSTRAINTS": "time_of_day: midday, harsh overhead sun, hard shadows; weather: active monsoon rain, visible raindrops; palette: desaturated documentary colour grade; film_look: 16mm film grain, slight halation; human_presence: one parent and one child, two people only",
+  "CREATIVE_ANGLE_DIALS": "subject_focus: a single object is the subject — ticket, bag, map, phone; payoff_scene: stepping out into the destination for the first time, luggage in hand",
+  "PRODUCT_FOCUS_DIALS": "product_presence: someone is using an unbranded travel booking app on a phone",
+  "CAPTION_DIALS": "caption_structure: hook, then three short points, then CTA; copy_tone: aspirational, evocative; hashtag_mix: weighted toward budget, deal and offer tags",
+  "$dials": {
+    "time_of_day": "midday_harsh",
+    "weather": "monsoon_rain",
+    "palette": "desaturated_doc",
+    "film_look": "film_grain_16mm",
+    "subject_focus": "object_detail",
+    "human_presence": "family_pair",
+    "caption_structure": "micro_listicle",
+    "copy_tone": "aspirational",
+    "hashtag_mix": "budget_deal_heavy",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "arrival_moment"
+  }
+}

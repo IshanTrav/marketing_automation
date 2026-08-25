@@ -1,0 +1,32 @@
+{
+  "OBJECTIVE": "consideration",
+  "LANGUAGE": "Hinglish",
+  "TOPIC": "Durga Pujo in Kolkata",
+  "TARGET_AUDIENCE": "Urban Indian millennials and extended friend groups (ages 23-34) planning an authentic Durga Pujo reunion trip, who have saved countless reels of pandal hopping but are stalled in WhatsApp group arguments over which days to fly in and which neighborhood routes to cover.",
+  "PAIN_POINT": "With thousands of pandals across sprawling North and South Kolkata and massive 4-hour queues on Ashtami night, every friend in the group has conflicting priorities—heritage traditional pujas in Bagbazar vs massive theme pandals in South Kolkata—leaving the group paralyzed in endless chat debates with zero consensus.",
+  "PRODUCT_FOCUS": "Group trip planning",
+  "DESTINATION": "Kolkata, West Bengal (Kumartuli idol-makers' district and North-South Pandal circuits)",
+  "CREATIVE_ANGLE": "They know they want the ultimate Kolkata Durga Pujo experience, but nobody can agree on whether to fly in by Sasthi or how to split the North vs South pandal days. Travafa's Group trip planning feature lets the entire crew drop their must-visit pandals and preferred travel dates directly into a shared space to vote on daily routes and locked dates, replacing chaotic 50-message chat threads with an agreed-upon festival itinerary.",
+  "CTA": "Comment TRAVAFA",
+  "TOTAL_DURATION_SECONDS": 19,
+  "FINAL_PART_SECONDS": 3,
+  "LOOK_CONSTRAINTS": "time_of_day: mid-morning, bright neutral daylight; weather: low fog and mist reducing visibility; palette: desaturated documentary colour grade; film_look: anamorphic lens, wide cinematic flares; human_presence: one parent and one child, two people only",
+  "CharacterStyle": "A parent wearing a faded mustard-yellow rolled-sleeve linen kurta over dark indigo denim and leather sandals with a worn black canvas crossbody bag, accompanied by an 8-year-old child in a maroon handloom cotton kurti and dusty sneakers.",
+  "Setting": "A narrow, cobbled alley in Kumartuli, Kolkata, bordered by weathered brick walls, bamboo scaffolding, and half-sculpted clay idols of Durga draped in straw under soft morning river mist.",
+  "ReferenceTone": "Candid documentary realism with a desaturated earthy palette, misty atmospheric depth, and cinematic anamorphic lens flares catching soft neutral morning light.",
+  "PhoneShotAction": "Holds the phone naturally in one hand while resting against a bamboo pillar, thumb-tapping to cast a vote on proposed pandal hopping routes in the Travafa group trip planning interface.",
+  "$dials": {
+    "time_of_day": "morning",
+    "weather": "fog_mist",
+    "palette": "desaturated_doc",
+    "film_look": "anamorphic_cinematic",
+    "subject_focus": "planning_led",
+    "human_presence": "family_pair",
+    "caption_structure": "short_story",
+    "copy_tone": "playful",
+    "hashtag_mix": "balanced",
+    "product_focus": "group_trip_planning",
+    "product_presence": "app_in_hand",
+    "payoff_scene": "window_seat"
+  }
+}

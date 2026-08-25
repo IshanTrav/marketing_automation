@@ -1,0 +1,177 @@
+{
+  "$comment": "Gemini responseSchema v3. Beats 4 and 5 are not generated, so scenes cover beats 1-3 only. A post is a sequence of scenes: Veo 3.1 caps one generation at 8 seconds, so longer posts are chained and concatenated.",
+  "type": "object",
+  "properties": {
+    "scenes": {
+      "type": "array",
+      "description": "Scenes covering beats 1 to 3 only - hook, problem, product intro. The demo and the CTA card are composited afterwards and must not appear here.",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scene_prompt": {
+            "type": "string",
+            "description": "Self-contained prompt for this scene. 60-120 words, ordered subject, action, setting, camera, lighting, colour, audio. Repeats subject and wardrobe description so the character stays consistent across scenes."
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "description": "Between 4 and 8."
+          },
+          "carries_dialogue": {
+            "type": "boolean",
+            "description": "True for exactly one scene when the dials call for dialogue, false otherwise."
+          }
+        },
+        "required": [
+          "scene_prompt",
+          "duration_seconds",
+          "carries_dialogue"
+        ],
+        "propertyOrdering": [
+          "scene_prompt",
+          "duration_seconds",
+          "carries_dialogue"
+        ]
+      }
+    },
+    "caption": {
+      "type": "string",
+      "description": "Post caption. First line is the hook, under 125 characters. Ends with the supplied keyword CTA. No hashtags."
+    },
+    "hashtags": {
+      "type": "array",
+      "description": "Exactly 8 lowercase hashtags without the # symbol.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "alt_text": {
+      "type": "string",
+      "description": "One sentence describing the visual for accessibility and for the Facebook post."
+    },
+    "dials_used": {
+      "type": "object",
+      "description": "Echo of the dial ids received in the input. Verified programmatically against the input. All 16 keys must be present; for image posts, reel-only dials are echoed as an empty string.",
+      "properties": {
+        "shot_type": {
+          "type": "string"
+        },
+        "time_of_day": {
+          "type": "string"
+        },
+        "camera_motion": {
+          "type": "string"
+        },
+        "weather": {
+          "type": "string"
+        },
+        "palette": {
+          "type": "string"
+        },
+        "film_look": {
+          "type": "string"
+        },
+        "subject_focus": {
+          "type": "string"
+        },
+        "human_presence": {
+          "type": "string"
+        },
+        "audio_bed": {
+          "type": "string"
+        },
+        "dialogue": {
+          "type": "string"
+        },
+        "hook_type": {
+          "type": "string"
+        },
+        "caption_structure": {
+          "type": "string"
+        },
+        "copy_tone": {
+          "type": "string"
+        },
+        "hashtag_mix": {
+          "type": "string"
+        },
+        "product_presence": {
+          "type": "string"
+        },
+        "visual_hook": {
+          "type": "string"
+        },
+        "demo_style": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "shot_type",
+        "time_of_day",
+        "camera_motion",
+        "weather",
+        "palette",
+        "film_look",
+        "subject_focus",
+        "human_presence",
+        "audio_bed",
+        "dialogue",
+        "hook_type",
+        "caption_structure",
+        "copy_tone",
+        "hashtag_mix",
+        "product_presence",
+        "visual_hook",
+        "demo_style"
+      ],
+      "propertyOrdering": [
+        "shot_type",
+        "time_of_day",
+        "camera_motion",
+        "weather",
+        "palette",
+        "film_look",
+        "subject_focus",
+        "human_presence",
+        "audio_bed",
+        "dialogue",
+        "hook_type",
+        "caption_structure",
+        "copy_tone",
+        "hashtag_mix",
+        "product_presence",
+        "visual_hook",
+        "demo_style"
+      ]
+    },
+    "uniqueness_rationale": {
+      "type": "string",
+      "description": "One sentence naming the specific dials that differentiate this post from the recent posts supplied in the input."
+    },
+    "dial_conflict": {
+      "type": "string",
+      "description": "Empty string if the dial combination worked. Otherwise name the dial and why it fought the topic. Logged to the database to learn which combinations are unusable."
+    }
+  },
+  "required": [
+    "scenes",
+    "caption",
+    "hashtags",
+    "alt_text",
+    "dials_used",
+    "uniqueness_rationale",
+    "dial_conflict"
+  ],
+  "propertyOrdering": [
+    "scenes",
+    "caption",
+    "hashtags",
+    "alt_text",
+    "dials_used",
+    "uniqueness_rationale",
+    "dial_conflict"
+  ]
+}

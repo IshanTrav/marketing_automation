@@ -1,0 +1,92 @@
+[
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Durga Pujo in Kolkata",
+    "dials": {
+      "time_of_day": "morning",
+      "weather": "fog_mist",
+      "palette": "desaturated_doc",
+      "film_look": "anamorphic_cinematic",
+      "subject_focus": "planning_led",
+      "human_presence": "family_pair",
+      "caption_structure": "short_story",
+      "copy_tone": "playful",
+      "hashtag_mix": "balanced",
+      "product_focus": "group_trip_planning",
+      "product_presence": "app_in_hand",
+      "payoff_scene": "window_seat"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Rajasthan desert safari with family",
+    "dials": {
+      "time_of_day": "blue_hour_dusk",
+      "weather": "post_rain_wet",
+      "palette": "cool_blue_teal",
+      "film_look": "film_grain_16mm",
+      "subject_focus": "object_detail",
+      "human_presence": "solo_back_to_camera",
+      "caption_structure": "question_answer",
+      "copy_tone": "aspirational",
+      "hashtag_mix": "destination_heavy",
+      "product_focus": "ai_trip_planner",
+      "product_presence": "feature_enacted",
+      "payoff_scene": "packing_out"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Rajasthan desert safari with family",
+    "dials": {
+      "time_of_day": "sunrise",
+      "weather": "monsoon_rain",
+      "palette": "muted_pastel",
+      "film_look": "phone_shot_authentic",
+      "subject_focus": "person_led",
+      "human_presence": "solo_face_visible",
+      "caption_structure": "micro_listicle",
+      "copy_tone": "practical_utility",
+      "hashtag_mix": "activity_heavy",
+      "product_focus": "booking_in_plan",
+      "product_presence": "app_screen_moment",
+      "payoff_scene": "arrival_moment"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Goa beach weekend with college friends",
+    "dials": {
+      "time_of_day": "golden_hour",
+      "weather": "clear_sky",
+      "palette": "warm_earth",
+      "film_look": "hyperlapse",
+      "subject_focus": "interaction_led",
+      "human_presence": "couple",
+      "caption_structure": "hook_value_cta",
+      "copy_tone": "playful",
+      "hashtag_mix": "balanced",
+      "product_focus": "shared_coordination",
+      "product_presence": "app_in_hand",
+      "payoff_scene": "destination_ease"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Kerala backwaters honeymoon trip",
+    "dials": {
+      "time_of_day": "night_artificial",
+      "weather": "overcast",
+      "palette": "desaturated_doc",
+      "film_look": "handheld_doc",
+      "subject_focus": "planning_led",
+      "human_presence": "family_pair",
+      "caption_structure": "short_story",
+      "copy_tone": "aspirational",
+      "hashtag_mix": "budget_deal_heavy",
+      "product_focus": "group_trip_planning",
+      "product_presence": "feature_enacted",
+      "payoff_scene": "window_seat"
+    }
+  }
+]

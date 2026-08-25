@@ -6,7 +6,18 @@
   "scripts": {
     "test-veo": "node test-veo.js",
     "upload": "node upload-to-gcs.js",
-    "publish-video": "node publish-instagram-video.js"
+    "publish-ig-video": "node publish-instagram-video.js",
+    "publish-fb-photo": "node publish-facebook-photo.js",
+    "publish-fb-video": "node publish-facebook-video.js",
+    "webhook-test": "node webhook-test.js",
+    "test-prompt": "node test-prompt-gen.js",
+    "test-veo-prompt": "node test-veo-from-prompt.js",
+    "finish-video": "node finish-video.js",
+    "gen-brief": "node gen-brief.js",
+    "gen-3refs": "node gen-3refs.js",
+    "gen-veo-prompt": "node gen-veo-prompt.js",
+    "build-reel": "node build-reel.js",
+    "make-reel": "bash pipeline.sh"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +26,7 @@
   "dependencies": {
     "@google-cloud/storage": "^8.0.1",
     "@google/genai": "^2.18.0",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "ffmpeg-static": "^5.3.0"
   }
 }

@@ -1,0 +1,258 @@
+<title>Advanced Access Playbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper: #EEEDE5; --paper-raised: #F8F7F1; --ink: #1B2A33; --ink-muted: #5B6864;
+    --line: #D9D6C7; --accent: #1F6E64; --accent-soft: #E4ECE9;
+    --good: #3F7D46; --good-soft: #E4EFE1; --warn: #A9721F; --warn-soft: #F3E9D6;
+    --bad: #A23B2E; --bad-soft: #F3E1DC; --muted: #857F6E; --muted-soft: #E7E4D9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #12181B; --paper-raised: #1A2124; --ink: #E8E4D6; --ink-muted: #A6A290;
+      --line: #2B3336; --accent: #56ABA0; --accent-soft: #1C2C29;
+      --good: #79B77C; --good-soft: #1E2A1F; --warn: #D9A544; --warn-soft: #2E2717;
+      --bad: #D9776A; --bad-soft: #2E1E1A; --muted: #9C9686; --muted-soft: #23231E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #12181B; --paper-raised: #1A2124; --ink: #E8E4D6; --ink-muted: #A6A290;
+    --line: #2B3336; --accent: #56ABA0; --accent-soft: #1C2C29;
+    --good: #79B77C; --good-soft: #1E2A1F; --warn: #D9A544; --warn-soft: #2E2717;
+    --bad: #D9776A; --bad-soft: #2E1E1A; --muted: #9C9686; --muted-soft: #23231E;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans",ui-sans-serif,sans-serif; font-size:16px; line-height:1.6; }
+  a{ color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover, a:focus-visible{ border-bottom-color: var(--accent); }
+  .sheet{ max-width: 880px; margin: 0 auto; padding: 56px 24px 96px; }
+  .kicker{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  header.cover{ border-bottom:1px solid var(--line); padding-bottom:28px; margin-bottom:40px; }
+  header.cover h1{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.02; margin:10px 0 8px; text-wrap:balance; }
+  header.cover .dek{ font-size:1.05rem; color:var(--ink-muted); max-width:640px; margin:0 0 20px; }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:8px 22px; font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-muted); }
+  .meta-row strong{ color:var(--ink); font-weight:600; }
+  section.block{ margin-bottom:40px; }
+  h2.section-title{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.5rem; margin:0 0 14px; text-wrap:balance; }
+  .manifest{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; font-family:"IBM Plex Mono",monospace; font-size:12.5px; }
+  .manifest a{ background:var(--paper-raised); padding:11px 12px; color:var(--ink); display:block; }
+  .manifest a:hover{ background:var(--accent-soft); color:var(--accent); }
+  .manifest a .n{ color:var(--accent); margin-right:6px; }
+  @media (max-width:640px){ .manifest{ grid-template-columns:1fr; } }
+  .part{ padding-top:34px; border-top:1px solid var(--line); scroll-margin-top:16px; }
+  .part-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .part-code{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent); letter-spacing:.08em; border:1px solid var(--accent); border-radius:3px; padding:2px 7px; flex-shrink:0; }
+  .part h3{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.4rem; margin:0; text-wrap:balance; }
+  .part .lede{ color:var(--ink-muted); max-width:66ch; margin:0 0 18px; }
+  code{ font-family:"IBM Plex Mono",monospace; font-size:0.92em; background:var(--paper-raised); border:1px solid var(--line); border-radius:3px; padding:1px 5px; }
+  .table-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:6px; margin: 14px 0; }
+  table{ width:100%; border-collapse:collapse; font-size:14px; min-width:560px; }
+  th,td{ padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{ background:var(--paper-raised); font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.num{ font-family:"IBM Plex Mono",monospace; font-variant-numeric: tabular-nums; white-space:nowrap; }
+  .verdict{ display:inline-flex; align-items:center; gap:5px; font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600; padding:3px 8px; border-radius:3px; white-space:nowrap; }
+  .verdict::before{ content:""; width:6px; height:6px; border-radius:50%; }
+  .verdict.good{ background:var(--good-soft); color:var(--good); } .verdict.good::before{ background:var(--good); }
+  .verdict.bad{ background:var(--bad-soft); color:var(--bad); } .verdict.bad::before{ background:var(--bad); }
+  .verdict.warn{ background:var(--warn-soft); color:var(--warn); } .verdict.warn::before{ background:var(--warn); }
+  .callout{ margin-top:12px; padding:12px 16px; border-radius:0 4px 4px 0; max-width:70ch; font-size:14.5px; }
+  .callout strong{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:4px; }
+  .callout.warn{ background:var(--warn-soft); border-left:3px solid var(--warn); } .callout.warn strong{ color:var(--warn); }
+  .callout.bad{ background:var(--bad-soft); border-left:3px solid var(--bad); } .callout.bad strong{ color:var(--bad); }
+  .callout.good{ background:var(--good-soft); border-left:3px solid var(--good); } .callout.good strong{ color:var(--good); }
+  ol.steps{ margin:0; padding-left:22px; max-width:70ch; }
+  ol.steps > li{ margin-bottom:10px; padding-left:4px; }
+  ol.steps > li::marker{ font-family:"IBM Plex Mono",monospace; color:var(--accent); font-weight:600; }
+  ul.plain{ margin:0; padding-left:20px; max-width:70ch; }
+  ul.plain li{ margin-bottom:6px; }
+  .cost-total{ margin-top:14px; padding:14px 16px; background:var(--accent-soft); border:1px solid var(--accent); border-radius:6px; font-family:"IBM Plex Mono",monospace; font-size:14px; max-width:70ch; }
+  footer.dossier{ margin-top:56px; padding-top:20px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-muted); }
+</style>
+
+<div class="sheet">
+
+  <header class="cover">
+    <span class="kicker">Reference · Verified 21 Aug 2026</span>
+    <h1>Advanced Access Playbook</h1>
+    <p class="dek">What Advanced Access actually unlocks on the Graph API, the concrete usage numbers behind it, and everything required to get there — cross-checked against Meta's own docs and against what we found hands-on in our own testing, where the two disagreed.</p>
+    <div class="meta-row">
+      <span>Standard Access: <strong>confirmed sufficient for publishing</strong></span>
+      <span>Advanced Access: <strong>required for reading comments/DMs</strong></span>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2 class="section-title">Contents</h2>
+    <div class="manifest">
+      <a href="#part-a"><span class="n">A</span>What Advanced Access unlocks</a>
+      <a href="#part-b"><span class="n">B</span>The numbers — real usage limits</a>
+      <a href="#part-c"><span class="n">C</span>Per-permission requirement</a>
+      <a href="#part-d"><span class="n">D</span>Business Verification</a>
+      <a href="#part-e"><span class="n">E</span>App Review submission</a>
+      <a href="#part-f"><span class="n">F</span>Rules layered on top of limits</a>
+      <a href="#part-g"><span class="n">G</span>Bottom line for our build</a>
+      <a href="#part-h"><span class="n">H</span>Veo billing via company Vertex AI</a>
+    </div>
+  </section>
+
+  <!-- PART A -->
+  <section class="part" id="part-a">
+    <div class="part-head"><span class="part-code">A</span><h3>What Advanced Access actually unlocks</h3></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimension</th><th>Standard Access</th><th>Advanced Access</th></tr></thead>
+        <tbody>
+          <tr><td>Who it works for</td><td>Only accounts with a role on our app (admins/testers)</td><td>Any real account that grants the permission</td></tr>
+          <tr><td>Approval needed</td><td>Automatic, no submission</td><td>App Review per permission + Business Verification</td></tr>
+          <tr><td>Publishing content</td><td><span class="verdict good">Works</span> for our own account (confirmed today)</td><td>Required to publish on accounts we don't own</td></tr>
+          <tr><td>Reading comments / DMs</td><td><span class="verdict bad">Blocked</span> — confirmed today, even for our own account's own comments</td><td>Required for any comment-reading at all</td></tr>
+          <tr><td>Rate limits</td><td>Baseline quota</td><td>Materially higher — quota scales with account activity instead of a low flat cap</td></tr>
+          <tr><td>Ongoing compliance</td><td>Exempt while in Development Mode</td><td>Must pass an annual Data Use Checkup (DUC) — miss the deadline and the app gets disabled, no extension</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout bad"><strong>Where our own testing disagreed with the docs</strong>Meta's documentation implies Standard Access should cover reading a tester account's <em>own</em> comments on its own post — "own or manage" is the stated boundary. We tested this directly today (our own account commenting on its own post) and it still came back empty, via both the GET endpoint and a verified, subscribed webhook. Treat comment-reading as fully gated behind Advanced Access, full stop — don't rely on the "own account" exception holding in practice.</div>
+  </section>
+
+  <!-- PART B -->
+  <section class="part" id="part-b">
+    <div class="part-head"><span class="part-code">B</span><h3>The numbers — real usage limits</h3></div>
+    <p class="lede">From Meta's official rate-limiting and content-publishing docs. These are the ceilings once a permission is actually approved and live.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Action</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Publishing to Instagram</td><td class="num">100 posts / rolling 24h, per account</td></tr>
+          <tr><td>Instagram general API activity</td><td class="num">4,800 × impressions in the last 24h</td></tr>
+          <tr><td>Private Reply (comment → DM)</td><td class="num">750 calls/hour, per account</td></tr>
+          <tr><td>Private Reply on Live comments</td><td class="num">100 calls/second</td></tr>
+          <tr><td>Conversations API</td><td class="num">2 calls/second, per account</td></tr>
+          <tr><td>Send API (text/link)</td><td class="num">100 calls/second</td></tr>
+          <tr><td>Send API (audio/video)</td><td class="num">10 calls/second</td></tr>
+          <tr><td>Facebook Page general activity</td><td class="num">200 × engaged users in the last 24h</td></tr>
+          <tr><td>Facebook Send API (text/link)</td><td class="num">300 calls/second, per Page</td></tr>
+          <tr><td>App-wide platform ceiling</td><td class="num">200 × daily active users, per hour</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>Ignore the round numbers floating around online</strong>A lot of 2026 guides quote a flat "200 DMs/hour" or "5,000 DMs/hour" for Instagram automation — these are informal, unverified figures, not documented anywhere in Meta's own rate-limiting page. The <strong>750 calls/hour Private Reply limit</strong> and the <strong>4,800 × impressions</strong> formula above are the actual documented ceilings — use these, not the round numbers.</div>
+  </section>
+
+  <!-- PART C -->
+  <section class="part" id="part-c">
+    <div class="part-head"><span class="part-code">C</span><h3>Per-permission requirement</h3></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Permission</th><th>Needs App Review?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>instagram_business_basic</code></td><td><span class="verdict warn">Conditional</span></td><td>Standard covers our own account only</td></tr>
+          <tr><td><code>instagram_business_content_publish</code></td><td><span class="verdict good">Standard is enough for us</span></td><td>Confirmed working today, own account</td></tr>
+          <tr><td><code>instagram_business_manage_comments</code></td><td><span class="verdict bad">Yes, always</span></td><td>Confirmed blocked today even for our own account</td></tr>
+          <tr><td><code>instagram_business_manage_messages</code></td><td><span class="verdict bad">Yes, always</span></td><td>Needed for the DM-sending half of Stage 09</td></tr>
+          <tr><td><code>pages_show_list</code></td><td><span class="verdict good">No</span></td><td>Only ever returns our own Page list</td></tr>
+          <tr><td><code>pages_read_engagement</code></td><td><span class="verdict warn">Conditional</span></td><td>Standard covers pages we manage</td></tr>
+          <tr><td><code>pages_manage_posts</code></td><td><span class="verdict good">Standard is enough for us</span></td><td>Confirmed working today, own Page. Bundles the two rows above as prerequisites</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PART D -->
+  <section class="part" id="part-d">
+    <div class="part-head"><span class="part-code">D</span><h3>Business Verification — do this first</h3></div>
+    <p class="lede">Required since Feb 2023 for any app requesting Advanced Access. Sequencing this after App Review is the most common self-inflicted delay.</p>
+    <ol class="steps">
+      <li>App Dashboard → Settings → Basic → <strong>Start Verification</strong> — routes into Business Manager's Security Center</li>
+      <li>Submit one of: Certificate/Articles of Incorporation, Business Registration/License, a government business tax document, or a business bank statement (issued within the provider's stated window — commonly 90 days)</li>
+      <li>A utility bill can support an <em>address</em> claim only — it cannot stand in for the legal business name</li>
+      <li>Upload high-resolution (300 DPI+), uncropped scans</li>
+    </ol>
+    <div class="callout bad"><strong>Most common rejection reason</strong>The legal name or address on the document doesn't <em>exactly</em> match what's entered in Business Manager — "Ltd" vs "Limited," a trading name instead of the legal name, "St" vs "Street." Copy the legal name character-for-character from the registration document into Business Manager before submitting anything.</div>
+    <div class="cost-total">Typical timeline: <strong>3–7 business days</strong>, up to ~10 during Meta's quarterly policy-update windows.</div>
+  </section>
+
+  <!-- PART E -->
+  <section class="part" id="part-e">
+    <div class="part-head"><span class="part-code">E</span><h3>App Review submission — per permission</h3></div>
+    <p class="lede">Each permission needs three things submitted together, and reviewers work from the video, not a description of the feature.</p>
+    <ol class="steps">
+      <li><strong>A screencast</strong> (1080p+, English UI, visible cursor) showing the complete journey: login → account connection → the specific feature that uses that one permission. One permission per video — don't bundle several into one clip.</li>
+      <li><strong>Written justification</strong> — a specific explanation of why this exact permission is needed for this exact feature, plus how the data is handled.</li>
+      <li><strong>A verifiable test call</strong> — at least one successful Graph API call using the permission, made within 30 days before submission (Graph API Explorer is acceptable).</li>
+    </ol>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Common rejection reason</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Requested a broader permission than the feature needs</td><td>Request the narrowest permission that covers the actual feature</td></tr>
+          <tr><td>Screencast skips steps or bundles permissions</td><td>One clean, complete recording per permission</td></tr>
+          <tr><td>Privacy policy missing or broken</td><td>A real, loading URL, checked right before submitting</td></tr>
+          <tr><td>Missing Data Deletion Instructions URL</td><td>Add the callback/URL in App Settings before submitting</td></tr>
+          <tr><td>App still in Development Mode</td><td>Switch to Live before submitting for review</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>A known, real pain point — not our mistake if we hit it</strong>Meta's test-user creation flow has been reported broken for an extended period across many developers. The common workaround is a dedicated real "dummy" tester account added as an app role, used specifically for the review recording — not a violation of the process, just the practical way around a tool that isn't fully working on Meta's side.</div>
+    <div class="cost-total">Timeline — reported figures diverge: Meta's own guidance says <strong>~1 week</strong>; multiple 2026 developer guides report Meta itself now setting expectations at <strong>~20 days</strong>; real-world reports for Instagram publishing/messaging specifically describe <strong>2–6 weeks with more than one round common</strong>. Plan for the long end.</div>
+  </section>
+
+  <!-- PART F -->
+  <section class="part" id="part-f">
+    <div class="part-head"><span class="part-code">F</span><h3>Rules layered on top of the rate limits</h3></div>
+    <p class="lede">These aren't capacity limits — they're hard policy rules that apply regardless of how much quota is left.</p>
+    <ul class="plain">
+      <li>One automated Private Reply per comment, ever — and only within <strong>7 days</strong> of the comment being posted</li>
+      <li>Automated messaging only within the <strong>24-hour standard messaging window</strong> after the person's last interaction — outside that window needs different message tags or a human handoff</li>
+      <li>An automated conversation must <strong>disclose that it's automated</strong> — at the start of the thread, after a long gap, or when handing off from bot to human</li>
+    </ul>
+  </section>
+
+  <!-- PART G -->
+  <section class="part" id="part-g">
+    <div class="part-head"><span class="part-code">G</span><h3>Bottom line for our build</h3></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stage</th><th>Access level needed</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Stage 08 — publish posts/Reels</td><td>Standard Access</td><td><span class="verdict good">Confirmed working today</span>, no App Review needed</td></tr>
+          <tr><td>Stage 09 — read comments, trigger DM</td><td>Advanced Access</td><td><span class="verdict bad">Confirmed blocked today</span>, App Review + Business Verification required regardless of account ownership</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good"><strong>What this means practically</strong>Nothing blocks starting the real build today — Stage 08 can go straight to production on Standard Access. Stage 09 needs Business Verification (~1 week) then App Review (~1–6 weeks, realistically the longer end) run in parallel with the rest of the build, not after it. A same-day demo of the comment→DM <em>idea</em> for stakeholders can still use Meta Business Suite's native automation or a Meta-approved third party (ManyChat, etc.) — neither of those unblocks our own app's Advanced Access, they're separate, already-approved systems standing in for a live demo.</div>
+  </section>
+
+  <!-- PART H -->
+  <section class="part" id="part-h">
+    <div class="part-head"><span class="part-code">H</span><h3>Veo billing via company Vertex AI</h3></div>
+    <p class="lede">Good news first: Vertex AI and the Gemini API charge the <strong>identical</strong> per-second rate for Veo 3.1 — using the company's existing Vertex project doesn't add a markup, it just changes who authenticates and who gets billed.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tier</th><th>Price/second</th><th>8s clip</th><th>12s clip</th></tr></thead>
+        <tbody>
+          <tr><td>Veo 3.1 Fast</td><td class="num">$0.15</td><td class="num">$1.20</td><td class="num">$1.80</td></tr>
+          <tr><td>Veo 3.1 Standard</td><td class="num">$0.40</td><td class="num">$3.20</td><td class="num">$4.80</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good"><strong>Audio is not a separate line item</strong>Both tiers include audio generation in the per-second price — no extra charge to budget for.</div>
+
+    <div class="subhead-note" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); margin:20px 0 8px; font-weight:600;">Monthly bill, at our actual cadence</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Fast tier</th><th>Standard tier</th></tr></thead>
+        <tbody>
+          <tr><td>Video every day (30/month), 8s clips</td><td class="num">~$36/month</td><td class="num">~$96/month</td></tr>
+          <tr><td>Video every day (30/month), 12s clips</td><td class="num">~$54/month</td><td class="num">~$144/month</td></tr>
+          <tr><td>Alternating video/image days (~15 videos/month), 8s clips</td><td class="num">~$20/month</td><td class="num">~$50/month</td></tr>
+          <tr><td>Alternating video/image days (~15 videos/month), 12s clips</td><td class="num">~$29/month</td><td class="num">~$74/month</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cost-total">Realistic planning number: <strong>$20–$96/month</strong> depending on tier and whether every day gets a video or half the days use a cheaper image instead (Imagen images add well under $5/month regardless of tier, negligible next to video). Image-day alternating + Fast tier is the cheapest sane default; Standard tier daily video is the ceiling to budget against, not the expectation.</div>
+    <div class="callout warn"><strong>What to actually ask the company's GCP admin</strong>Since billing runs through the existing Vertex project, get: (1) confirmation Veo 3.1 is enabled in that project's region, (2) whether there's a budget alert/quota already set that a few dollars a day of Veo usage could trip, and (3) which tier (Fast vs Standard) finance would rather default to — this is a real, recurring line item on the company's own cloud bill now, not a separate personal expense.</div>
+  </section>
+
+  <footer class="dossier">Advanced Access Playbook — v1 · Verified against Meta's own docs + our own hands-on testing, 21 Aug 2026</footer>
+</div>

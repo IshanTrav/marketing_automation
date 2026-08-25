@@ -1,0 +1,199 @@
+{
+  "$comment": "Schema v4. The unit is a BEAT, not a scene. A beat may be shorter than the clip it comes from, may not be generated at all, and always carries its own on-screen text and voiceover line. The beat list is the timeline.",
+  "type": "object",
+  "properties": {
+    "beats": {
+      "type": "array",
+      "description": "The reel in order. Every beat has text and a voiceover line; only generated beats have a scene prompt.",
+      "minItems": 5,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "One of: hook, problem, intro, demo, payoff, cta"
+          },
+          "source": {
+            "type": "string",
+            "description": "generated = written by you and produced by the video model. app_recording = real captured app footage. end_card = a designed card. You write scene_prompt only for generated beats."
+          },
+          "use_seconds": {
+            "type": "number",
+            "description": "How long this beat is on screen in the final cut. Short. 2 to 3 seconds for story beats."
+          },
+          "generate_seconds": {
+            "type": "integer",
+            "description": "Only for generated beats: the clip length to request, from 4, 6 or 8. Always longer than use_seconds - the clip is trimmed to its best moment."
+          },
+          "scene_prompt": {
+            "type": "string",
+            "description": "Only for generated beats. 60-150 words, ordered subject, action, setting, camera, lighting, colour, audio. No speech: the voiceover is a separate track."
+          },
+          "on_screen_text": {
+            "type": "string",
+            "description": "Composited afterwards, never rendered by the video model. At most 7 words. Must carry the beat's meaning with the sound off. Empty string only if the beat genuinely needs none."
+          },
+          "voiceover": {
+            "type": "string",
+            "description": "One spoken line for this beat, part of a single continuous narration across the whole reel. Read at roughly 2.5 words per second, so a 3 second beat holds about 8 words."
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "use_seconds",
+          "on_screen_text",
+          "voiceover"
+        ],
+        "propertyOrdering": [
+          "id",
+          "source",
+          "use_seconds",
+          "generate_seconds",
+          "scene_prompt",
+          "on_screen_text",
+          "voiceover"
+        ]
+      }
+    },
+    "caption": {
+      "type": "string",
+      "description": "Post caption. First line is the hook, under 125 characters, alone on its line. Ends with the supplied keyword CTA. No hashtags."
+    },
+    "hashtags": {
+      "type": "array",
+      "description": "Exactly 8 lowercase hashtags without the # symbol.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "alt_text": {
+      "type": "string",
+      "description": "One sentence describing the visual, for accessibility and the Facebook post."
+    },
+    "dials_used": {
+      "type": "object",
+      "properties": {
+        "shot_type": {
+          "type": "string"
+        },
+        "time_of_day": {
+          "type": "string"
+        },
+        "camera_motion": {
+          "type": "string"
+        },
+        "weather": {
+          "type": "string"
+        },
+        "palette": {
+          "type": "string"
+        },
+        "film_look": {
+          "type": "string"
+        },
+        "subject_focus": {
+          "type": "string"
+        },
+        "human_presence": {
+          "type": "string"
+        },
+        "audio_bed": {
+          "type": "string"
+        },
+        "hook_type": {
+          "type": "string"
+        },
+        "caption_structure": {
+          "type": "string"
+        },
+        "copy_tone": {
+          "type": "string"
+        },
+        "hashtag_mix": {
+          "type": "string"
+        },
+        "product_presence": {
+          "type": "string"
+        },
+        "visual_hook": {
+          "type": "string"
+        },
+        "demo_style": {
+          "type": "string"
+        },
+        "payoff_scene": {
+          "type": "string"
+        }
+      },
+      "description": "Echo of the dial ids received in the input, verified programmatically.",
+      "required": [
+        "shot_type",
+        "time_of_day",
+        "camera_motion",
+        "weather",
+        "palette",
+        "film_look",
+        "subject_focus",
+        "human_presence",
+        "audio_bed",
+        "hook_type",
+        "caption_structure",
+        "copy_tone",
+        "hashtag_mix",
+        "product_presence",
+        "visual_hook",
+        "demo_style",
+        "payoff_scene"
+      ],
+      "propertyOrdering": [
+        "shot_type",
+        "time_of_day",
+        "camera_motion",
+        "weather",
+        "palette",
+        "film_look",
+        "subject_focus",
+        "human_presence",
+        "audio_bed",
+        "hook_type",
+        "caption_structure",
+        "copy_tone",
+        "hashtag_mix",
+        "product_presence",
+        "visual_hook",
+        "demo_style",
+        "payoff_scene"
+      ]
+    },
+    "uniqueness_rationale": {
+      "type": "string",
+      "description": "One sentence naming the specific dials that differentiate this post from the recent posts supplied."
+    },
+    "dial_conflict": {
+      "type": "string",
+      "description": "Empty string if the dial combination worked. Otherwise name the dial and why it fought the topic."
+    }
+  },
+  "required": [
+    "beats",
+    "caption",
+    "hashtags",
+    "alt_text",
+    "dials_used",
+    "uniqueness_rationale",
+    "dial_conflict"
+  ],
+  "propertyOrdering": [
+    "beats",
+    "caption",
+    "hashtags",
+    "alt_text",
+    "dials_used",
+    "uniqueness_rationale",
+    "dial_conflict"
+  ]
+}

@@ -1,5 +1,203 @@
 [
   {
+    "posted_on": "2026-08-28",
+    "topic": "Chennai two day trip",
+    "dials": {
+      "time_of_day": "golden_hour",
+      "weather": "clear_sky",
+      "palette": "muted_pastel",
+      "film_look": "handheld_doc",
+      "subject_focus": "interaction_led",
+      "human_presence": "couple",
+      "caption_structure": "micro_listicle",
+      "copy_tone": "reassuring",
+      "hashtag_mix": "activity_heavy",
+      "product_focus": "shared_coordination",
+      "product_presence": "app_in_hand",
+      "payoff_scene": "window_seat",
+      "hook_style": "overheard",
+      "pacing_shape": "problem_forward",
+      "ending_style": "direct_to_camera",
+      "dialogue_density": "front_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-28",
+    "topic": "Ooty travel",
+    "dials": {
+      "time_of_day": "night_artificial",
+      "weather": "post_rain_wet",
+      "palette": "warm_earth",
+      "film_look": "clean_digital",
+      "subject_focus": "planning_led",
+      "human_presence": "family_pair",
+      "caption_structure": "question_answer",
+      "copy_tone": "practical_utility",
+      "hashtag_mix": "balanced",
+      "product_focus": "group_trip_planning",
+      "product_presence": "app_screen_moment",
+      "payoff_scene": "arrival_moment",
+      "hook_style": "direct_address",
+      "pacing_shape": "product_forward",
+      "ending_style": "payoff_environment",
+      "dialogue_density": "even_spread"
+    }
+  },
+  {
+    "posted_on": "2026-08-28",
+    "topic": "Goa beach weekend trip",
+    "dials": {
+      "time_of_day": "midday_harsh",
+      "weather": "windy",
+      "palette": "cool_blue_teal",
+      "film_look": "phone_shot_authentic",
+      "subject_focus": "object_detail",
+      "human_presence": "solo_face_visible",
+      "caption_structure": "hook_value_cta",
+      "copy_tone": "aspirational",
+      "hashtag_mix": "budget_deal_heavy",
+      "product_focus": "ai_trip_planner",
+      "product_presence": "feature_enacted",
+      "payoff_scene": "destination_ease",
+      "hook_style": "object_first",
+      "pacing_shape": "balanced",
+      "ending_style": "direct_to_camera",
+      "dialogue_density": "back_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-28",
+    "topic": "Goa beach weekend trip",
+    "dials": {
+      "time_of_day": "morning",
+      "weather": "fog_mist",
+      "palette": "high_contrast_tropical",
+      "film_look": "anamorphic_cinematic",
+      "subject_focus": "person_led",
+      "human_presence": "solo_face_visible",
+      "caption_structure": "punchy_line_cta",
+      "copy_tone": "aspirational",
+      "hashtag_mix": "activity_heavy",
+      "product_focus": "booking_in_plan",
+      "product_presence": "app_in_hand",
+      "payoff_scene": "boarding_gate",
+      "hook_style": "object_first",
+      "pacing_shape": "balanced",
+      "ending_style": "direct_to_camera",
+      "dialogue_density": "front_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Varanasi two day itninerary",
+    "dials": {
+      "time_of_day": "blue_hour_dusk",
+      "weather": "windy",
+      "palette": "neon_night",
+      "film_look": "hyperlapse",
+      "subject_focus": "interaction_led",
+      "human_presence": "couple",
+      "caption_structure": "short_story",
+      "copy_tone": "reassuring",
+      "hashtag_mix": "destination_heavy",
+      "product_focus": "shared_coordination",
+      "product_presence": "feature_enacted",
+      "payoff_scene": "destination_ease",
+      "hook_style": "direct_address",
+      "pacing_shape": "product_forward",
+      "ending_style": "payoff_environment",
+      "dialogue_density": "back_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "himachal trips to witness Mountains and Valleys",
+    "dials": {
+      "time_of_day": "sunrise",
+      "weather": "overcast",
+      "palette": "cool_blue_teal",
+      "film_look": "film_grain_16mm",
+      "subject_focus": "planning_led",
+      "human_presence": "family_pair",
+      "caption_structure": "hook_value_cta",
+      "copy_tone": "practical_utility",
+      "hashtag_mix": "balanced",
+      "product_focus": "group_trip_planning",
+      "product_presence": "app_screen_moment",
+      "payoff_scene": "packing_out",
+      "hook_style": "overheard",
+      "pacing_shape": "problem_forward",
+      "ending_style": "direct_to_camera",
+      "dialogue_density": "even_spread"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "himachal trips to witness Mountains and Valleys",
+    "dials": {
+      "time_of_day": "midday_harsh",
+      "weather": "post_rain_wet",
+      "palette": "muted_pastel",
+      "film_look": "phone_shot_authentic",
+      "subject_focus": "object_detail",
+      "human_presence": "solo_back_to_camera",
+      "caption_structure": "question_answer",
+      "copy_tone": "playful",
+      "hashtag_mix": "activity_heavy",
+      "product_focus": "ai_trip_planner",
+      "product_presence": "app_in_hand",
+      "payoff_scene": "arrival_moment",
+      "hook_style": "object_first",
+      "pacing_shape": "balanced",
+      "ending_style": "payoff_environment",
+      "dialogue_density": "front_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Kashmir Valley Trip",
+    "dials": {
+      "time_of_day": "night_artificial",
+      "weather": "monsoon_rain",
+      "palette": "warm_earth",
+      "film_look": "handheld_doc",
+      "subject_focus": "person_led",
+      "human_presence": "solo_face_visible",
+      "caption_structure": "micro_listicle",
+      "copy_tone": "aspirational",
+      "hashtag_mix": "destination_heavy",
+      "product_focus": "booking_in_plan",
+      "product_presence": "feature_enacted",
+      "payoff_scene": "boarding_gate",
+      "hook_style": "direct_address",
+      "pacing_shape": "product_forward",
+      "ending_style": "direct_to_camera",
+      "dialogue_density": "back_loaded"
+    }
+  },
+  {
+    "posted_on": "2026-08-25",
+    "topic": "Andaman islands scuba diving trip",
+    "dials": {
+      "time_of_day": "overcast_diffuse",
+      "weather": "windy",
+      "palette": "high_contrast_tropical",
+      "film_look": "clean_digital",
+      "subject_focus": "interaction_led",
+      "human_presence": "couple",
+      "caption_structure": "punchy_line_cta",
+      "copy_tone": "reassuring",
+      "hashtag_mix": "budget_deal_heavy",
+      "product_focus": "shared_coordination",
+      "product_presence": "app_screen_moment",
+      "payoff_scene": "destination_ease",
+      "hook_style": "overheard",
+      "pacing_shape": "problem_forward",
+      "ending_style": "payoff_environment",
+      "dialogue_density": "even_spread"
+    }
+  },
+  {
     "posted_on": "2026-08-25",
     "topic": "Durga Pujo in Kolkata",
     "dials": {

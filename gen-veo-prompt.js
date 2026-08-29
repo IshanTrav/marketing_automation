@@ -41,6 +41,38 @@ brief.REFERENCE_ASSETS = {
   TRAVAFA_BRAND_REFERENCES: brandReferences,
 };
 
+// The dial-picker's history.json rotates *categories* (which hook style, which look) -
+// it never told this call what specific words earlier videos actually used, so the model
+// could still converge on the same stock phrasing ("she looks straight into the camera
+// lens with genuine relatable frustration...") post after post, dials notwithstanding.
+// A second, separate history tracks that: recent literal openings, dialogue lines and
+// CTA headlines, fed back in as lines to avoid repeating.
+const PHRASE_HISTORY_PATH = "prompts/phrase-history.json";
+const KEEP_LAST = 6;
+
+function extractFingerprint(text) {
+  const partHeader = /^PART\s+(\d+)\s+OF\s+(\d+)/gm;
+  const headers = [...text.matchAll(partHeader)];
+  const ctaIdx = text.search(/^CTA OVERLAY\s*$/m);
+  const bodyEnd = ctaIdx > -1 ? ctaIdx : text.length;
+  const phrases = [];
+  headers.forEach((m, i) => {
+    const start = m.index;
+    const end = i + 1 < headers.length ? headers[i + 1].index : bodyEnd;
+    const body = text.slice(start, end);
+    const firstShot = body.match(/\[00:00[^\]]*\]\s*([^\n]{1,200})/);
+    if (firstShot) phrases.push(firstShot[1].trim());
+    for (const q of body.matchAll(/"([^"]{6,140})"/g)) phrases.push(q[1].trim());
+  });
+  const headline = text.slice(ctaIdx > -1 ? ctaIdx : 0).match(/^headline:\s*(.+)$/m);
+  if (headline) phrases.push(headline[1].trim());
+  return phrases;
+}
+
+const phraseHistory = fs.existsSync(PHRASE_HISTORY_PATH)
+  ? JSON.parse(fs.readFileSync(PHRASE_HISTORY_PATH, "utf8")) : [];
+const recentPhrases = phraseHistory.flatMap((h) => h.phrases);
+
 // The brief is data, not instruction. It is fenced and labelled so a topic written by
 // someone else cannot redirect the model.
 const userTurn = [
@@ -52,10 +84,20 @@ const userTurn = [
   "```json",
   JSON.stringify(brief, null, 2),
   "```",
+  ...(recentPhrases.length ? [
+    "",
+    `The lines and shot-openings below were used in the last ${phraseHistory.length} videos.`,
+    "Do not reuse any of them verbatim or in close paraphrase - the shot idea, the phrasing,",
+    "and the sentence rhythm all need to be genuinely new this time, even where the brief's",
+    "topic or dials happen to be similar to a recent one.",
+    "",
+    ...recentPhrases.map((p) => `- ${p}`),
+  ] : []),
 ].join("\n");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-console.log(`template=${TEMPLATE}  model=${MODEL}  topic="${brief.TOPIC}"  duration=${brief.TOTAL_DURATION_SECONDS}s\n`);
+console.log(`template=${TEMPLATE}  model=${MODEL}  topic="${brief.TOPIC}"  duration=${brief.TOTAL_DURATION_SECONDS}s`);
+console.log(`avoiding ${recentPhrases.length} phrases from the last ${phraseHistory.length} generations\n`);
 
 const res = await ai.models.generateContent({
   model: MODEL,
@@ -69,3 +111,8 @@ if (outPath) {
   fs.writeFileSync(outPath, text + "\n");
   console.log(`\n→ ${outPath}`);
 }
+
+const newPhrases = extractFingerprint(text);
+phraseHistory.unshift({ generated_at: new Date().toISOString().slice(0, 10), topic: brief.TOPIC, phrases: newPhrases });
+fs.writeFileSync(PHRASE_HISTORY_PATH, JSON.stringify(phraseHistory.slice(0, KEEP_LAST), null, 2) + "\n");
+console.log(`→ ${PHRASE_HISTORY_PATH} (${newPhrases.length} phrases fingerprinted, ${Math.min(phraseHistory.length, KEEP_LAST)} generations kept)`);

@@ -45,7 +45,7 @@
     "primary_min_changes_vs_previous_post": 3,
     "primary_tuple_unique_within_last_n_posts": 20,
     "secondary_dials": "free, subject only to their own cooldown",
-    "$comment": "Counted against the 5 primary dials that survive: time_of_day, subject_focus, human_presence, product_focus, payoff_scene.",
+    "$comment": "Counted against the 7 primary dials that survive: time_of_day, subject_focus, human_presence, product_focus, payoff_scene, hook_style, pacing_shape.",
     "$comment_cooldown": "A dial's cooldown must be at most values-1, otherwise excluding the recent window leaves nothing to pick and the rule silently stops applying."
   },
   "throttles": [
@@ -254,7 +254,7 @@
         },
         {
           "id": "couple",
-          "prompt_text": "two travellers together, friends or partners"
+          "prompt_text": "a romantic couple travelling together - boyfriend-girlfriend or husband-wife, with the ease and physical familiarity of an established relationship, not two friends"
         },
         {
           "id": "family_pair",
@@ -440,7 +440,58 @@
       ],
       "feeds": "CREATIVE_ANGLE"
     },
-    "$comment_feeds": "Each dial names the brief field it flows into. LOOK_CONSTRAINTS, CREATIVE_ANGLE and CAPTION are composite fields - every dial that feeds one of these three is joined into a single 'name: text; name: text' string. Any other feeds target (PRODUCT_FOCUS, PHONE_SHOT_ACTION) is a direct passthrough: exactly one dial should feed it, and its prompt_text becomes that brief field verbatim."
+    "hook_style": {
+      "category": "structure",
+      "impact": "primary",
+      "cooldown": 2,
+      "applies_to": ["reel"],
+      "$comment": "How the first block opens. Structural, not cinematographic - varies the shape of the video, not just its look. Feeds veo-prompt-template.md's THE PROBLEM IS THE HOOK section.",
+      "values": [
+        { "id": "direct_address", "prompt_text": "the character speaks straight to camera from the first frame, already mid-problem" },
+        { "id": "object_first", "prompt_text": "the camera opens on an object or detail - a phone screen, a ticket, a bag, a notebook - before the character is revealed" },
+        { "id": "overheard", "prompt_text": "the scene opens on dialogue already in progress between two people, and the camera finds them" }
+      ],
+      "feeds": "HOOK_STYLE"
+    },
+    "pacing_shape": {
+      "category": "structure",
+      "impact": "primary",
+      "cooldown": 2,
+      "applies_to": ["reel"],
+      "$comment": "How runtime is shared between problem and product across the STORY STRUCTURE beats - the other axis of structural sameness, separate from hook_style.",
+      "values": [
+        { "id": "problem_forward", "prompt_text": "give the problem and escalation more room; compress the product demonstration into a single fast, confident beat" },
+        { "id": "product_forward", "prompt_text": "compress the problem to the minimum needed to feel real; expand the product demonstration into the largest beat" },
+        { "id": "balanced", "prompt_text": "keep problem, product and result close to equal thirds of the runtime" }
+      ],
+      "feeds": "PACING_SHAPE"
+    },
+    "ending_style": {
+      "category": "structure",
+      "impact": "secondary",
+      "cooldown": 1,
+      "applies_to": ["reel"],
+      "$comment": "Only two values on purpose - this changes what the final part is allowed to contain (dialogue, which references), so it stays a deliberate, infrequent switch rather than churning every post. See STORY STRUCTURE beat 8 in the template for what each value requires downstream.",
+      "values": [
+        { "id": "payoff_environment", "prompt_text": "the final part is a silent environment shot with no one in frame; the CTA overlay lands on it" },
+        { "id": "direct_to_camera", "prompt_text": "the character turns directly to camera in the final part and speaks the CTA themselves; the environment is present but secondary" }
+      ],
+      "feeds": "ENDING_STYLE"
+    },
+    "dialogue_density": {
+      "category": "structure",
+      "impact": "secondary",
+      "cooldown": 2,
+      "applies_to": ["reel"],
+      "$comment": "Which dialogue-carrying parts get used, within the existing hard 2-lines-per-part cap - does not raise or lower that cap, only where the lines cluster.",
+      "values": [
+        { "id": "front_loaded", "prompt_text": "concentrate dialogue in the earlier parts; let the later parts lean more on visual action and silence" },
+        { "id": "even_spread", "prompt_text": "keep dialogue-carrying blocks distributed roughly evenly through the parts that carry dialogue" },
+        { "id": "back_loaded", "prompt_text": "keep the earliest part more visual and silent; let dialogue increase as the story reaches the product and result beats" }
+      ],
+      "feeds": "DIALOGUE_DENSITY"
+    },
+    "$comment_feeds": "Each dial names the brief field it flows into. LOOK_CONSTRAINTS, CREATIVE_ANGLE and CAPTION are composite fields - every dial that feeds one of these three is joined into a single 'name: text; name: text' string. Any other feeds target (PRODUCT_FOCUS, PHONE_SHOT_ACTION, HOOK_STYLE, PACING_SHAPE, ENDING_STYLE, DIALOGUE_DENSITY) is a direct passthrough: exactly one dial should feed it, and its prompt_text becomes that brief field verbatim."
   },
   "incompatibilities": {
     "$comment": "Pairs that must never co-occur. Format 'dial:value'. Symmetric — order does not matter.",
@@ -464,6 +515,14 @@
       [
         "time_of_day:midday_harsh",
         "weather:fog_mist"
+      ],
+      [
+        "hook_style:overheard",
+        "human_presence:solo_face_visible"
+      ],
+      [
+        "hook_style:overheard",
+        "human_presence:solo_back_to_camera"
       ]
     ],
     "allowed_only_with": [

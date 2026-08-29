@@ -14,7 +14,8 @@
 //   --language <...>                               default: Hinglish
 //   --cta <...>                                     default: Comment TRAVAFA
 //   --duration <seconds>                            default: 19
-//   --final-part-seconds <seconds>                  default: 3
+//   --final-part-seconds <seconds>                  default: 3, or 8 (no trim) when the
+//                                                     ending_style dial picks direct_to_camera
 //   --destination <...>                             optional, otherwise the model infers it
 //   --no-history                                    don't append the chosen dials to history.json
 
@@ -37,7 +38,7 @@ const OBJECTIVE = flag("objective", "consideration");
 const LANGUAGE = flag("language", "Hinglish");
 const CTA = flag("cta", "Comment TRAVAFA");
 const TOTAL_DURATION_SECONDS = Number(flag("duration", 19));
-const FINAL_PART_SECONDS = Number(flag("final-part-seconds", 3));
+const finalPartSecondsFlag = flag("final-part-seconds", null);   // null = let ending_style decide
 const destinationOverride = flag("destination", null);
 const skipHistory = argv.includes("--no-history");
 
@@ -50,7 +51,15 @@ const HISTORY_PATH = "prompts/history.json";
 const history = fs.existsSync(HISTORY_PATH) ? JSON.parse(fs.readFileSync(HISTORY_PATH, "utf8")) : [];
 const { dials: chosen, relaxed, attempts } = pick(history);
 const dialFields = toBriefFields(chosen);
-console.log(`dials: ${chosen.product_focus} (${attempts} attempt${attempts === 1 ? "" : "s"}${relaxed.length ? `, relaxed: ${relaxed.join(", ")}` : ""})`);
+console.log(`dials: ${chosen.product_focus} | ${chosen.hook_style} | ${chosen.pacing_shape} | ${chosen.ending_style} | ${chosen.dialogue_density}`
+  + ` (${attempts} attempt${attempts === 1 ? "" : "s"}${relaxed.length ? `, relaxed: ${relaxed.join(", ")}` : ""})`);
+
+// direct_to_camera speaks the CTA in the final part itself - trimming that part down to a
+// few seconds would cut the line off mid-sentence, the exact failure this whole rebuild
+// was fixing. Only payoff_environment (silent) suits a short CTA-landing trim.
+const FINAL_PART_SECONDS = finalPartSecondsFlag != null
+  ? Number(finalPartSecondsFlag)
+  : (chosen.ending_style === "direct_to_camera" ? 8 : 3);
 
 // --- ask Gemini for everything that requires actually knowing the topic -----------------
 
@@ -115,6 +124,12 @@ const brief = {
   TOTAL_DURATION_SECONDS,
   FINAL_PART_SECONDS,
   LOOK_CONSTRAINTS: dialFields.LOOK_CONSTRAINTS,
+  // Structural dials, code-controlled like PRODUCT_FOCUS - the template branches on
+  // these directly, so they are never asked of the brief-writing LLM call above.
+  HOOK_STYLE: dialFields.HOOK_STYLE,
+  PACING_SHAPE: dialFields.PACING_SHAPE,
+  ENDING_STYLE: dialFields.ENDING_STYLE,
+  DIALOGUE_DENSITY: dialFields.DIALOGUE_DENSITY,
   CharacterStyle: written.CharacterStyle,
   Setting: written.Setting,
   ReferenceTone: written.ReferenceTone,

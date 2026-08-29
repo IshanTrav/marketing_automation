@@ -33,8 +33,9 @@ PART 1 OF <n> — 8s — references: CHARACTER, HERO_PHONE, ENVIRONMENT
 PART 2 OF <n> — 8s — references: HERO_PHONE
   <the same, standing alone>
 
-PART <n> OF <n> — 8s — references: ENVIRONMENT
-  <the final part: no dialogue, the payoff shot the CTA lands on>
+PART <n> OF <n> — 8s — references: ENVIRONMENT (or CHARACTER, ENVIRONMENT under direct_to_camera)
+  <the final part: the payoff shot the CTA lands on - silent under payoff_environment,
+   or carrying the spoken CTA as its one line under direct_to_camera>
 
 CTA OVERLAY
   kicker / headline / button / footnote / overlay_from
@@ -93,7 +94,19 @@ REFERENCE ASSETS:             {{REFERENCE_ASSETS}}
 TOTAL DURATION:               {{TOTAL_DURATION_SECONDS}}
 FINAL PART KEPT SECONDS:      {{FINAL_PART_SECONDS}}
 LOOK CONSTRAINTS:             {{LOOK_CONSTRAINTS}}
+HOOK STYLE:                   {{HOOK_STYLE}}
+PACING SHAPE:                 {{PACING_SHAPE}}
+ENDING STYLE:                 {{ENDING_STYLE}}
+DIALOGUE DENSITY:             {{DIALOGUE_DENSITY}}
 ```
+
+`HOOK_STYLE`, `PACING_SHAPE`, `ENDING_STYLE` and `DIALOGUE_DENSITY` are chosen upstream,
+the same way `LOOK_CONSTRAINTS` is — against posting history, so consecutive videos don't
+converge on the same shape the way they would converge on the same light left free. Where
+each changes something is covered in the section it affects: `HOOK_STYLE` in THE PROBLEM
+IS THE HOOK, `PACING_SHAPE` in STORY STRUCTURE, `ENDING_STYLE` in STORY STRUCTURE beat 8,
+`DIALOGUE_DENSITY` in DIALOGUE. If any of these is not supplied, use the first value named
+in its section and say so in the self-check.
 
 `OBJECTIVE` is what the ad is for: **awareness**, **consideration**, or **action**. It
 is decided before anything else, because it changes the creative rather than decorating it.
@@ -219,6 +232,21 @@ never been easier · Your ultimate travel companion · Travel made easy.*
 
 Start inside the problem, mid-action.
 
+### `HOOK_STYLE` decides how the first block opens
+
+All three still land the hook formula above in the first 3 seconds. What changes is the
+first thing the camera shows and how the character's first line arrives.
+
+| `HOOK_STYLE` | First block opens on | The line arrives |
+|---|---|---|
+| `direct_address` | The character, already mid-problem, facing camera | Said straight to camera from block one |
+| `object_first` | A close, specific object first - the phone screen, a ticket, a bag, a notebook - held or seen for well under a second before the character is revealed | Said as the camera reaches the character, not before |
+| `overheard` | Two people already talking, the problem already spilling out between them | Mid-conversation - the first line the viewer hears is not the first thing either of them said, it's a fragment already in progress |
+
+`object_first` and `overheard` still need the problem legible in that first block without
+sound - the object or the visible frustration between the two people has to carry it, not
+only the line that follows.
+
 ### The hook must open a question, not close one
 
 This is the difference between a hook that stops a scroll and one that merely explains.
@@ -293,7 +321,15 @@ This is the one instruction that matters most about it: the tail of a generation
 speech gets cut, and a sign-off written into the closing block is a sign-off that will not
 be reached. The last block carries the action; the block before it carries the words.
 
-Keep it to the action itself — *"Comment TRAVAFA."* — not a sentence about the product.
+Keep it to the action itself — *"Comment Travafa."* — not a sentence about the product.
+
+**Write the spoken brand name in normal case, never in the all-caps form `{{CTA}}` may
+arrive in.** `{{CTA}}` (e.g. "Comment TRAVAFA") is a written keyword convention — caps
+are how a viewer is told which exact word to type, and that reading applies to the
+overlay footnote text only. Spoken aloud, an all-caps short word gets read as an
+acronym and comes out spelled letter by letter — "T. R. A. V. A. F. A." — not said as a
+word. Every spoken line uses "Travafa"; only the `CTA OVERLAY.footnote` field keeps the
+capitalisation given in `{{CTA}}`.
 
 **Where the brand line sits is not a preference, it is the difference between the brand
 being in the video and not.** Put it in the **middle** of its part, with at least two
@@ -473,8 +509,10 @@ count. Every interaction must be supported by the `{{PRODUCT_FOCUS}}` row in BRA
 
 Dialogue is a primary storytelling layer, not emotional decoration.
 
-**Up to two short spoken lines in every part except the final, silent payoff part.**
-For an N-part video that is up to 2×(N-1) lines total — distribute them throughout the
+**Up to two short spoken lines in every part.** Under `ENDING_STYLE: payoff_environment`
+the final payoff part is silent, so that is up to 2×(N-1) lines total for an N-part
+video; under `direct_to_camera` the final part carries exactly one (the CTA), so it's
+2×(N-1)+1. Distribute them throughout the
 parts that carry dialogue rather than clustering them at the start.
 
 ### The per-part speech budget
@@ -486,15 +524,33 @@ It is measured, not estimated. Past two lines the generation is not shortened �
 passes; any two of three fail. Two is what survives.
 
 - **Because the limit is two, choose them.** In the part that names the brand, one of the
-  two is the brand line. The final part carries no dialogue at all — it is the silent
-  payoff shot the CTA overlay lands on — so the spoken CTA belongs to the **last part that
-  carries dialogue** (the second-to-last part overall). The other line in each of these
-  parts carries the beat. Nothing decorative gets a line.
+  two is the brand line. Where the spoken CTA goes depends on `ENDING_STYLE`: under
+  `payoff_environment` the final part carries no dialogue at all - it is the silent
+  payoff shot the CTA overlay lands on - so the spoken CTA belongs to the last part that
+  *does* carry dialogue (the second-to-last part overall). Under `direct_to_camera` the
+  CTA is itself the final part's one line, spoken there directly. The other line in each
+  dialogue-carrying part carries the beat. Nothing decorative gets a line.
 - **A silent shot is not a failure.** A strong action with no line beats a line that gets
   the whole generation refused.
 - **Never put the most important line in the final shot of a part.** The tail of a
   generation is where speech runs out. Put the brand line and the CTA in the middle, with
   at least two blocks after them.
+
+### `DIALOGUE_DENSITY` decides which parts use their two lines
+
+The 2-line-per-part cap does not change. What changes is which dialogue-carrying parts
+actually spend both lines versus lean on a strong silent action instead - not every part
+has to use its full budget.
+
+| `DIALOGUE_DENSITY` | What it means |
+|---|---|
+| `front_loaded` | The earliest problem parts carry both lines each; parts nearer the product/result lean more on visual action, spending only the brand line or the CTA line where one is required |
+| `even_spread` | Every dialogue-eligible part carries close to two lines each, spaced evenly through the video |
+| `back_loaded` | The opening problem part is mostly visual - a strong silent action establishes it - and dialogue picks up from the discovery beat onward |
+
+The brand line and the spoken CTA still have to land where DIALOGUE has already required
+them (the discovery beat; the last dialogue-carrying part) regardless of density - this
+only decides how the *remaining* lines are distributed among the other parts.
 
 ### Say it out loud before you write it down
 
@@ -615,6 +671,20 @@ Default beat map. Timing may shift for the topic; the causal order may not.
 | 7. Result | ~13% | The change, caused by the product |
 | 8. Payoff + CTA | ~13% | The environment shot the CTA lands on, and the video ends there |
 
+The percentages above are `PACING_SHAPE: balanced`. `PACING_SHAPE` moves runtime between
+beats 1-4 (problem) and beat 6 (product) without changing which beats exist or their
+causal order:
+
+| `PACING_SHAPE` | Beats 1-4 (problem) | Beat 6 (product) | Beats 7-8 (result + payoff) |
+|---|---|---|---|
+| `problem_forward` | ~50%, more room to feel the escalation | ~14%, one fast confident beat | ~23% |
+| `product_forward` | ~28%, the minimum that still feels real | ~35%, the clear largest beat | ~24% |
+| `balanced` | ~41% (table above) | ~23% (table above) | ~26% (table above) |
+
+Whichever shape is chosen, beat 6 must still be **at least as large as any single problem
+beat** - compressing the problem must never leave the product feeling smaller than what it
+replaced.
+
 **Beat 1 — Problem hook.** No establishing shot, no travel footage, no logo, no product
 explanation. The character is already inside the problem. Dialogue starts immediately.
 
@@ -642,12 +712,14 @@ transition to the travel moment. Never cut to a beautiful destination and imply 
 the solution.
 
 **Beat 8 — Payoff + CTA.** This is the **final generated part**, and the video ends when
-it ends — nothing is appended after it. There is no separate end-card clip.
+it ends — nothing is appended after it. There is no separate end-card clip. What the shot
+itself contains depends on `ENDING_STYLE`.
 
-The shot itself is an establishing or environment beat: the place the trip is actually
-about, no dialogue, ENVIRONMENT reference only (see REFERENCE ASSETS). It is the visual
-payoff — the thing the whole video has been building the case to go and see — held for
-the last 2-3 seconds of real screen time once the CTA text is composited over it in post.
+**`ENDING_STYLE: payoff_environment`** (the default). The shot is an establishing or
+environment beat: the place the trip is actually about, no dialogue, ENVIRONMENT
+reference only (see REFERENCE ASSETS). It is the visual payoff — the thing the whole
+video has been building the case to go and see — held for the last 2-3 seconds of real
+screen time once the CTA text is composited over it in post.
 
 Do not write a shot for a logo, a card, or text resolving on screen — none of that is
 generated. Instead:
@@ -658,6 +730,22 @@ generated. Instead:
   frame settles, the lower third stays open and unbusy."
 - End the part on stillness, not a hard action mid-motion — a moving shot that suddenly
   stops when the composited layer appears reads as a mistake, not a landing.
+
+**`ENDING_STYLE: direct_to_camera`**. The character is present and speaks the CTA
+themselves, straight to camera, as this part's one dialogue line. References are
+CHARACTER + ENVIRONMENT (see REFERENCE ASSETS). This is the one exception to "the final
+part carries no dialogue" - here it carries exactly the CTA line and nothing else, said
+in the way the DIALOGUE section's brand-naming rules describe: ending its sentence, a
+short pause before it, delivered slowly and distinctly, in normal case (never all-caps -
+see "write the spoken brand name in normal case" above).
+
+Because the CTA is now spoken *in* this part, `FINAL_PART_SECONDS` must not trim it below
+the point where the line finishes — treat a `FINAL_PART_SECONDS` under 8 here as a
+`dial_conflict`: name it in the self-check rather than silently writing a line that the
+assembly step will cut off.
+
+Both styles still leave the lower third calm for the kept window, and both still end on
+stillness rather than mid-motion - only who is in frame and whether they speak changes.
 
 Instead of an END CARD block, output the CTA copy as a separate block after the final
 part:
@@ -991,6 +1079,8 @@ by a missing or mismatched asset cannot be fixed by writing, so report it.
 5a. The brand is spoken at the discovery beat, not described anonymously
 5b. The brand is spoken at most once per part, ending its sentence
 5c. At least two blocks follow the spoken brand line - state which block it is in
+5c-1. Every spoken line writes "Travafa" in normal case, never in the all-caps form - an
+      all-caps brand name gets read aloud as spelled-out letters, not as a word
 5d. At least two blocks follow the spoken CTA - state which block it is in
 5e. The problem lines describe what the traveller keeps doing, not what the world is like
 6.  The product beat demonstrates PRODUCT_FOCUS, not some other feature
@@ -1001,10 +1091,16 @@ by a missing or mismatched asset cannot be fixed by writing, so report it.
 10a. No shot or line claims a state the reference never reaches - confirmed, booked, paid,
      saved, locked in - and this includes what characters say, not only what is shown
 11. New information lands every 1-2 seconds
-12. Never more than 2 dialogue lines in any part, and zero in the final part
+11a. The first block matches HOOK_STYLE - state which style and how the block satisfies it
+11b. The runtime split across problem/product/result matches PACING_SHAPE - state the
+     approximate shares and confirm beat 6 is at least as large as any single problem beat
+12. Never more than 2 dialogue lines in any part; the final part carries zero under
+    `ENDING_STYLE: payoff_environment` or exactly one (the CTA) under `direct_to_camera`
 12a. No part carries more than 2 spoken lines - count them, this is a hard limit
 12b. Every line passes the said-aloud test; none reads like an interface label
 12c. The dialogue is in LANGUAGE, and Hinglish lines use Hindi sentence structure
+12d. Which parts spend both lines vs lean on silence matches DIALOGUE_DENSITY - state
+     which parts got both lines and which leaned on silent action
 13. No shot exists purely for atmosphere
 14. The result is caused by the product, not by a destination cut
 15. No fabricated offer, price, discount or statistic
@@ -1016,10 +1112,16 @@ by a missing or mismatched asset cannot be fixed by writing, so report it.
 18c. No two adjacent shots sit within one rung of each other on the shot ladder
 18d. No two over-the-shoulder shots are adjacent
 19. No shot describes a logo, title or text resolving on screen
-19a. A spoken CTA lands in the second-to-last block of the second-to-last part
+19a. Under `payoff_environment`, the spoken CTA lands mid-part with at least two blocks
+     following it, in the last part that carries dialogue. Under `direct_to_camera`, the
+     CTA is the final part's own line, placed the same way within that part
 19b. Nothing the viewer must see sits in the top 14% or bottom 20% of frame
 19c. The creative matches OBJECTIVE, and the audio strategy is stated
-19d. The final part carries references: ENVIRONMENT only, and no dialogue
+19d. Under `payoff_environment` the final part carries references: ENVIRONMENT only, and
+     no dialogue. Under `direct_to_camera` it carries CHARACTER + ENVIRONMENT and exactly
+     the spoken CTA line
+19f. If `ENDING_STYLE` is `direct_to_camera` and `FINAL_PART_SECONDS` is under 8, this is
+     a `dial_conflict` - name it rather than writing a CTA line that gets trimmed off
 19e. The final part's last 2-3 seconds are explicitly written as calm, with the lower
      third left open for the composited CTA
 20. A CTA OVERLAY block is included after the final part, with an overlay_from time inside it
@@ -1053,13 +1155,16 @@ PART <n> OF <total> — <seconds>s — references: <subset of CHARACTER, HERO_PH
   the timestamp shot blocks, each ordered:
       cinematography → subject → action → context → lighting → colour → audio
       and closing with:  Viewer learns: <the one new thing this block delivers>
-  the spoken lines belonging to these shots (none, for the final part)
+  the spoken lines belonging to these shots (none, unless this is the final part under
+      direct_to_camera, which carries exactly the spoken CTA)
   the look and continuity held across the part
   the constraints, written as positive descriptions
 ```
 
-The final part carries references: ENVIRONMENT only, no dialogue, and ends on the
-stillness described in STORY STRUCTURE beat 8.
+The final part's references and dialogue depend on `ENDING_STYLE` - ENVIRONMENT only and
+silent under `payoff_environment`, or CHARACTER + ENVIRONMENT with the spoken CTA under
+`direct_to_camera` - and it ends on the stillness described in STORY STRUCTURE beat 8
+either way.
 
 Then the `CTA OVERLAY` block, then a `MANIFEST` block, then `SELF-CHECK`.
 
